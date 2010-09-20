@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+Design Concept By: Angelman8 [ http://angelman8.deviantart.com/ ] 
+Coding By: TooStoned
+Edited By: dcinzona
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script src="functions.js" type="text/javascript"></script>
+		<script src="jquery.min.js" charset="utf-8"></script>
+		<script src="jquery.simpleWeather.min.js" charset="utf-8"></script>
+		<script>
+		function getWeather(){
+			$.simpleWeather({
+				location: 'Bethesda, MD',
+				unit: 'f',
+				success: function(weather) {
+					$("#weatherThumb").attr('src', weather.image);
+					$("#weatherCity").html(weather.city+', '+weather.region);
+					$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
+					$("#weatherCurrently").text(weather.currently);
+				},
+				error: function(error) {
+					$("#weather").html('');
+				}
+			});			
+			setTimeout('getWeather()', 600000);
+		}
+		</script>
+        <style type="text/css">@import url("style.css");</style>
+    </head>
+    <body onload="handle()">
+        <base href="Private"/>
+            <div id="mainDiv">
+                <table id="divtable">
+                    <tr>
+		                <script type="text/javascript">
+		                    document.write('<td><img src="Private/'+getHour(AM_PM).substring(0,1)+'.png" id="hr1" name="hr1"></td>');
+		                </script>
+				                <script type="text/javascript">
+				                    document.write('<td><img src="Private/'+getHour(AM_PM).substring(1,2)+'.png" id="hr2" name="hr2"></td>');
+				                </script>
+                        <td><img src="Private/NOTamNORpm.png" id="ampm" name="ampm"></td>
+					                <script type="text/javascript">
+					                    document.write('<td><img src="Private/'+getMinute().substring(0,1)+'.png" id="mn1" name="mn1"></td>');
+					                </script>
+									<script type="text/javascript">
+					                    document.write('<td><img src="Private/'+getMinute().substring(1,2)+'.png" id="mn2" name="mn2"></td>');
+					                </script>
+                    </tr>
+                </table>
+            </div>
+            <div id="month">
+                <script type="text/javascript">
+                    document.write("<img width=420 src=Private/"+Month()+".png>");
+                </script>
+            </div>
+            <div id="day">
+                <script type="text/javascript">
+                    document.write("<img width=250 src=Private/"+Day()+".png>");
+                </script>
+            </div>
+            <div id="dayNumeric">
+                <script type="text/javascript"> 
+                    document.write("<img width=150 src=Private/"+DayNumeric()+".png>");
+                </script> 
+            </div>
+            <div id="year">
+                <script type="text/javascript">
+                    document.write("<img width=180 src=Private/"+Year()+".png>");
+                </script> 
+            </div>
+			<div id="weather">
+				<img id="weatherThumb" />
+				<h2 id="weatherCity"></h2>
+				<div id="weatherTemp"></div>
+				<div id="weatherCurrently"></div>
+			</div>
+			<script>
+			getWeather();
+			</script>
+            <div id="unlock">
+                <script type="text/javascript">
+                    document.write("<img width=130 src=Private/Unlock.png>");
+                </script>
+            </div>
+    </body>
+</html>
