@@ -1,0 +1,13 @@
+This is a mod to the awesome Typophone 4 theme found here: http://angelman8.deviantart.com/art/Typophone-4-175481865
+
+Changes I've made:
+
+- Instead of loading 88:88 initially for the time and then updating it, I am loading the correct time automatically using javascript.
+
+- Added jQuery and the simpleWeather plugin and styled it to include the current weather.
+
+To change your zipcode:
+
+	1. Edit the zipcode value on line 16 of LockBackground.html found here: /private/var/stash/Themes.XXXX/Typophone GMT (or Typophone 4)
+	
+	2. Respring
