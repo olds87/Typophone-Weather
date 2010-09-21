@@ -13,7 +13,7 @@ Edited By: dcinzona
 		<script>
 		function getWeather(){
 			$.simpleWeather({
-				location: 'Bethesda, MD',
+				zipcode: '20814',
 				unit: 'f',
 				success: function(weather) {
 					$("#weatherThumb").attr('src', weather.image);
