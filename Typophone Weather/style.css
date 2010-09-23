@@ -38,13 +38,13 @@ body {
 #weatherCity, #weatherCurrently
 {
 	left:100px;
-	width:200px;
+	width:250px;
 }
 #weatherTemp
 {
 	font-size:5em;
 	left:100;
-	width:200px;
+	width:250px;
 	top:35px;
 }
 #weatherCurrently

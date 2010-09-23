@@ -13,19 +13,20 @@ Edited By: dcinzona
 		<script>
 		function getWeather(){
 			$.simpleWeather({
-				location: 'Bethesda, MD',
+				zipcode: '20814',
 				unit: 'f',
 				success: function(weather) {
 					$("#weatherThumb").attr('src', weather.image);
 					$("#weatherCity").html(weather.city+', '+weather.region);
 					$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
 					$("#weatherCurrently").text(weather.currently);
+					setTimeout('getWeather()', 600000);
 				},
 				error: function(error) {
 					$("#weather").html('');
+					setTimeout('getWeather()',1000);
 				}
 			});			
-			setTimeout('getWeather()', 600000);
 		}
 		</script>
         <style type="text/css">@import url("style.css");</style>
