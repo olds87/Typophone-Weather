@@ -12,21 +12,27 @@ Edited By: dcinzona
 		<script src="jquery.simpleWeather.min.js" charset="utf-8"></script>
 		<script>
 		function getWeather(){
-			$.simpleWeather({
-				zipcode: '20814',
-				unit: 'f',
-				success: function(weather) {
-					$("#weatherThumb").attr('src', weather.image);
-					$("#weatherCity").html(weather.city+', '+weather.region);
-					$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
-					$("#weatherCurrently").text(weather.currently);
-					setTimeout('getWeather()', 600000);
-				},
-				error: function(error) {
-					$("#weather").html('');
-					setTimeout('getWeather()',1000);
-				}
-			});			
+			var zip = '85719';
+			$.get('zip.js', function(z){
+				
+				zip = eval(z);
+				
+				$.simpleWeather({
+					zipcode: zip,
+					unit: 'f',
+					success: function(weather) {
+						$("#weatherThumb").attr('src', weather.image);
+						$("#weatherCity").html(weather.city+', '+weather.region);
+						$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
+						$("#weatherCurrently").text(weather.currently);
+						setTimeout('getWeather()', 600000);
+					},
+					error: function(error) {
+						$("#weather").html('');
+						setTimeout('getWeather()',1000);
+					}
+				});				
+			});
 		}
 		</script>
         <style type="text/css">@import url("style.css");</style>
