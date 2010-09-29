@@ -63,3 +63,50 @@ function Year() {
 function date() {
     return new Date();
 }
+function catchSwipe(event, tapFunction, args){
+	var args = args || null;
+	if(event && event.touches && event.touches.length == 1){
+		event.stopPropagation();
+		
+		var startX = event.touches[0].pageX;
+		var startY = event.touches[0].pageY;
+		var x = startX;
+		var y = startY;
+
+		document.ontouchend = function(){
+			if(typeof(tapFunction) == "function" && Math.sqrt(Math.pow(startX - x, 2) + Math.pow(startY -y, 2)) <= 3){
+				tapFunction(args);
+			}
+			document.ontouchend = undefined;
+			document.ontouchmove = undefined;
+		};
+
+		document.ontouchmove = function(e){
+			if(Math.abs(startY - e.touches[0].pageY) > 20){
+				x = e.touches[0].pageX;
+				y = e.touches[0].pageY;
+				document.ontouchend(e);
+				return false;
+			}else if(Math.abs(startX - x) >= 60){
+				if(Math.abs(y - e.touches[0].pageY) <= 20){
+					if(startX > x){
+						//toggleHide();
+					}else {
+						//toggleAllSections();
+					}
+				}
+				x = e.touches[0].pageX;
+				y = e.touches[0].pageY;
+				document.ontouchend(e);
+			}else{
+				x = e.touches[0].pageX;
+				y = e.touches[0].pageY;
+			}
+		};
+	}else if(typeof(tapFunction) == "function"){
+		tapFunction(args);
+	}
+}
+function toggleForecast(){
+	getWeather();
+}

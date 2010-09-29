@@ -30,31 +30,7 @@ body {
     top:208px;
     left:130px;
 }
-#weather{
-	top:260;
-	left:3;
-	font-family:"helvetica";
-}
-#weatherCity, #weatherCurrently
-{
-	left:100px;
-	width:250px;
-}
-#weatherTemp
-{
-	font-size:5em;
-	left:100;
-	width:250px;
-	top:35px;
-}
-#weatherCurrently
-{
-	top:120px;
-}
-#weatherThumb
-{
-	top:0;
-}
+
 #divtable {
     top: -437px;
     left: -27px;
@@ -75,8 +51,45 @@ body {
 	top:422px;
     left:175px;
 }
-
-#weather,#weatherCurrently, #weatherThumb, #weatherCity, #weatherTemp, #day, #dayNumeric, #month, #year, #divtable, #mainDiv, #unlock { 
+#weather{
+	top:260;
+	left:3;
+	font-family:"helvetica";
+	width:1600px;
+	position:absolute;
+}
+.weatherCity, .weatherCurrently
+{
+	left:100px;
+	width:250px;
+}
+.weatherTemp
+{
+	font-size:5em;
+	left:100;
+	width:250px;
+	top:35px;
+}
+.weatherCurrently
+{
+	top:120px;
+}
+.weatherThumb
+{
+	top:0;
+}
+#weather .weatherSection
+{
+	position:relative;
+	float:left;
+	width:320px;
+	height:200px;
+}
+.weatherCurrently, .weatherThumb, .weatherCity, .weatherTemp{
+	position:absolute;
+	text-shadow:0px 0px 5px black;
+}
+#day, #dayNumeric, #month, #year, #divtable, #mainDiv, #unlock { 
 	position:absolute; 
 	text-shadow:0px 0px 5px black;
 	}

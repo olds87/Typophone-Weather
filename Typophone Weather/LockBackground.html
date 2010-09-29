@@ -14,9 +14,7 @@ Edited By: dcinzona
 		function getWeather(){
 			var zip = '85719';
 			$.get('zip.js', function(z){
-				
 				zip = eval(z);
-				
 				$.simpleWeather({
 					zipcode: zip,
 					unit: 'f',
@@ -25,14 +23,21 @@ Edited By: dcinzona
 						$("#weatherCity").html(weather.city+', '+weather.region);
 						$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
 						$("#weatherCurrently").text(weather.currently);
+						$('#weatherCurrently1').text(weather.tomorrow.forecast)
+						$('#weatherTemp1').html(weather.tomorrow.high +'&deg; '+weather.units.temp)
+						$("#weatherThumb1").attr('src', weather.tomorrow.image);
 						setTimeout('getWeather()', 600000);
 					},
 					error: function(error) {
-						$("#weather").html('');
+						$("#weatherThumb").attr('src', '');//replace with loading
+						$("#weatherCity").html('');
+						$("#weatherTemp").html('');
+						$("#weatherCurrently").text('');
 						setTimeout('getWeather()',1000);
 					}
 				});				
 			});
+			
 		}
 		</script>
         <style type="text/css">@import url("style.css");</style>
@@ -79,13 +84,24 @@ Edited By: dcinzona
                 </script> 
             </div>
 			<div id="weather">
-				<img id="weatherThumb" />
-				<h2 id="weatherCity"></h2>
-				<div id="weatherTemp"></div>
-				<div id="weatherCurrently"></div>
+				<div id="Day0Weather" class="weatherSection">
+					<img id="weatherThumb" class="weatherThumb" />
+					<h2 id="weatherCity" class="weatherCity" ></h2>
+					<div id="weatherTemp" class="weatherTemp" ></div>
+					<div id="weatherCurrently" class="weatherCurrently" ></div>
+				</div>
+				<div id="Day1Weather" class="weatherSection">
+					<img id="weatherThumb1" class="weatherThumb" />
+					<h2 id="weatherCity1" class="weatherCity" >Tomorrow</h2>
+					<div id="weatherTemp1" class="weatherTemp" ></div>
+					<div id="weatherCurrently1" class="weatherCurrently" ></div>
+				</div>
 			</div>
 			<script>
 			getWeather();
+			weather2DIV = document.getElementById('weather');
+			weather2DIV.ontouchstart = function(event){catchSwipe(event, toggleForecast, [this]);};
+			
 			</script>
             <div id="unlock">
                 <script type="text/javascript">
