@@ -13,7 +13,7 @@ Edited By: dcinzona
 		<script>
 		function getWeather(){
 			var zip = '85719';
-			$.get('zip.js', function(z){
+			$.get('zip.txt', function(z){
 				zip = eval(z);
 				$.simpleWeather({
 					zipcode: zip,
@@ -33,6 +33,9 @@ Edited By: dcinzona
 						$("#weatherCity").html('');
 						$("#weatherTemp").html('');
 						$("#weatherCurrently").text('');
+						$('#weatherCurrently1').text('')
+						$('#weatherTemp1').html('')
+						$("#weatherThumb1").attr('');
 						setTimeout('getWeather()',1000);
 					}
 				});				
@@ -101,7 +104,9 @@ Edited By: dcinzona
 			getWeather();
 			weather2DIV = document.getElementById('weather');
 			weather2DIV.ontouchstart = function(event){catchSwipe(event, toggleForecast, [this]);};
-			
+			$('#weather').click(function(){
+				$(this).toggleClass('forecast')	;			
+			});
 			</script>
             <div id="unlock">
                 <script type="text/javascript">

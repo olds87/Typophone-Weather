@@ -85,6 +85,10 @@ body {
 	width:320px;
 	height:200px;
 }
+#weather.forecast
+{
+	left:-317px;
+}
 .weatherCurrently, .weatherThumb, .weatherCity, .weatherTemp{
 	position:absolute;
 	text-shadow:0px 0px 5px black;
