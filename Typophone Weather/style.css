@@ -78,14 +78,14 @@ body {
 		font-size:2.6em;
 		left:100;
 		width:250px;
-		top:40px;
+		top:42px;
 		font-weight:bold;
 	}
 #weather1Low
 {
 	font-size:.8em;
 	position:relative;
-	top:-5px;
+	top:-9px;
 }
 .weatherCurrently
 {
