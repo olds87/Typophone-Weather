@@ -24,8 +24,8 @@ Edited By: dcinzona
 						$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
 						$("#weatherCurrently").text(weather.currently);
 						$('#weatherCurrently1').text(weather.tomorrow.forecast);
-						$('#weather1High').html('High: <span class="bold">'+weather.tomorrow.high +'&deg; </span>'+weather.units.temp);
-						$('#weather1Low').html('Low: <span class="bold">'+weather.tomorrow.low +'&deg; </span>'+weather.units.temp);
+						$('#weather1High').html('<span class="label">High: </span><span class="bold">'+weather.tomorrow.high +'&deg; </span>'+weather.units.temp);
+						$('#weather1Low').html('<span class="label">Low: </span><span class="bold">'+weather.tomorrow.low +'&deg; </span>'+weather.units.temp);
 						$("#weatherThumb1").attr('src', weather.tomorrow.image);
 						setTimeout('getWeather()', 600000);
 					},
