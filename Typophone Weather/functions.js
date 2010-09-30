@@ -90,9 +90,11 @@ function catchSwipe(event, tapFunction, args){
 			}else if(Math.abs(startX - x) >= 60){
 				if(Math.abs(y - e.touches[0].pageY) <= 20){
 					if(startX > x){
-						//toggleHide();
+						//show forecast
+						$('#weather').addClass('forecast');
 					}else {
-						//toggleAllSections();
+						//hide forecast
+						$('#weather').removeClass('forecast');
 					}
 				}
 				x = e.touches[0].pageX;
@@ -108,5 +110,5 @@ function catchSwipe(event, tapFunction, args){
 	}
 }
 function toggleForecast(){
-	getWeather();
+		$('#weather').toggleClass('forecast');
 }
