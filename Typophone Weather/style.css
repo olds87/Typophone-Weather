@@ -75,17 +75,21 @@ body {
 }
 .weatherTempHighLow
 	{
-		font-size:2.6em;
+		font-size:2.0em;
 		left:100;
 		width:250px;
-		top:42px;
-		font-weight:bold;
+		top:38px;
 	}
 #weather1Low
 {
 	font-size:.8em;
 	position:relative;
-	top:-9px;
+	top:-12px;
+}
+.bold
+{
+	font-size:1.4em;
+	font-weight:bold;
 }
 .weatherCurrently
 {
