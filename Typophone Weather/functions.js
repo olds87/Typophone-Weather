@@ -63,52 +63,84 @@ function Year() {
 function date() {
     return new Date();
 }
-function catchSwipe(event, tapFunction, args){
-	var args = args || null;
-	if(event && event.touches && event.touches.length == 1){
-		event.stopPropagation();
+(function($) {
+	$.fn.swipe = function(options) {
 		
-		var startX = event.touches[0].pageX;
-		var startY = event.touches[0].pageY;
-		var x = startX;
-		var y = startY;
-
-		document.ontouchend = function(){
-			if(typeof(tapFunction) == "function" && Math.sqrt(Math.pow(startX - x, 2) + Math.pow(startY -y, 2)) <= 3){
-				tapFunction(args);
-			}
-			document.ontouchend = undefined;
-			document.ontouchmove = undefined;
+		// Default thresholds & swipe functions
+		var defaults = {
+			threshold: {
+				x: 30,
+				y: 10
+			},
+			swipeLeft: function() { alert('swiped left') },
+			swipeRight: function() { alert('swiped right') }
 		};
-
-		document.ontouchmove = function(e){
-			if(Math.abs(startY - e.touches[0].pageY) > 20){
-				x = e.touches[0].pageX;
-				y = e.touches[0].pageY;
-				document.ontouchend(e);
-				return false;
-			}else if(Math.abs(startX - x) >= 60){
-				if(Math.abs(y - e.touches[0].pageY) <= 20){
-					if(startX > x){
-						//show forecast
-						$('#weather').addClass('forecast');
-					}else {
-						//hide forecast
-						$('#weather').removeClass('forecast');
+		
+		var options = $.extend(defaults, options);
+		
+		if (!this) return false;
+		
+		return this.each(function() {
+			
+			var me = $(this)
+			
+			// Private variables for each element
+			var originalCoord = { x: 0, y: 0 }
+			var finalCoord = { x: 0, y: 0 }
+			
+			// Screen touched, store the original coordinate
+			function touchStart(event) {
+				//console.log('Starting swipe gesture...')
+				originalCoord.x = event.targetTouches[0].pageX
+				originalCoord.y = event.targetTouches[0].pageY
+			}
+			
+			// Store coordinates as finger is swiping
+			function touchMove(event) {
+			    event.preventDefault();
+				finalCoord.x = event.targetTouches[0].pageX // Updated X,Y coordinates
+				finalCoord.y = event.targetTouches[0].pageY
+			}
+			
+			// Done Swiping
+			// Swipe should only be on X axis, ignore if swipe on Y axis
+			// Calculate if the swipe was left or right
+			function touchEnd(event) {
+				//console.log('Ending swipe gesture...')
+				var changeY = originalCoord.y - finalCoord.y
+				if(changeY < defaults.threshold.y && changeY > (defaults.threshold.y*-1)) {
+					changeX = originalCoord.x - finalCoord.x
+					
+					if(changeX > defaults.threshold.x) {
+						defaults.swipeLeft()
+					}
+					if(changeX < (defaults.threshold.x*-1)) {
+						defaults.swipeRight()
 					}
 				}
-				x = e.touches[0].pageX;
-				y = e.touches[0].pageY;
-				document.ontouchend(e);
-			}else{
-				x = e.touches[0].pageX;
-				y = e.touches[0].pageY;
 			}
-		};
-	}else if(typeof(tapFunction) == "function"){
-		tapFunction(args);
-	}
-}
-function toggleForecast(){
-		$('#weather').toggleClass('forecast');
-}
+			
+			// Swipe was started
+			function touchStart(event) {
+				//console.log('Starting swipe gesture...')
+				originalCoord.x = event.targetTouches[0].pageX
+				originalCoord.y = event.targetTouches[0].pageY
+
+				finalCoord.x = originalCoord.x
+				finalCoord.y = originalCoord.y
+			}
+			
+			// Swipe was canceled
+			function touchCancel(event) { 
+				//console.log('Canceling swipe gesture...')
+			}
+			
+			// Add gestures to all swipable areas
+			this.addEventListener("touchstart", touchStart, false);
+			this.addEventListener("touchmove", touchMove, false);
+			this.addEventListener("touchend", touchEnd, false);
+			this.addEventListener("touchcancel", touchCancel, false);
+				
+		});
+	};
+})(jQuery);
