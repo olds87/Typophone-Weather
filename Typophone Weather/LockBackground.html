@@ -23,8 +23,9 @@ Edited By: dcinzona
 						$("#weatherCity").html(weather.city+', '+weather.region);
 						$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
 						$("#weatherCurrently").text(weather.currently);
-						$('#weatherCurrently1').text(weather.tomorrow.forecast)
-						$('#weatherTemp1').html(weather.tomorrow.high +'&deg; '+weather.units.temp)
+						$('#weatherCurrently1').text(weather.tomorrow.forecast);
+						$('#weather1High').html('High: '+weather.tomorrow.high +'&deg; '+weather.units.temp);
+						$('#weather1Low').html('Low: '+weather.tomorrow.low +'&deg; '+weather.units.temp);
 						$("#weatherThumb1").attr('src', weather.tomorrow.image);
 						setTimeout('getWeather()', 600000);
 					},
@@ -33,8 +34,9 @@ Edited By: dcinzona
 						$("#weatherCity").html('');
 						$("#weatherTemp").html('');
 						$("#weatherCurrently").text('');
-						$('#weatherCurrently1').text('')
-						$('#weatherTemp1').html('')
+						$('#weatherCurrently1').text('');
+						$('#weather1High').html('');
+						$('#weather1Low').html('');
 						$("#weatherThumb1").attr('');
 						setTimeout('getWeather()',1000);
 					}
@@ -96,7 +98,10 @@ Edited By: dcinzona
 				<div id="Day1Weather" class="weatherSection">
 					<img id="weatherThumb1" class="weatherThumb" />
 					<h2 id="weatherCity1" class="weatherCity" >Tomorrow</h2>
-					<div id="weatherTemp1" class="weatherTemp" ></div>
+					<div id="weatherTemp1" class="weatherTempHighLow" >
+						<div id="weather1High"></div>
+						<div id="weather1Low"></div>
+					</div>
 					<div id="weatherCurrently1" class="weatherCurrently" ></div>
 				</div>
 			</div>
