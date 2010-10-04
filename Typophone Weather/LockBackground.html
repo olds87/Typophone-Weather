@@ -25,6 +25,8 @@ Edited By: dcinzona
 						$("#weatherCurrently").text(weather.currently);
 						$('#weatherCurrently1').text(weather.forecast);
 						$('#weatherCurrently2').text(weather.tomorrow.forecast);
+						$("#weatherCity1").html('Today');
+						$("#weatherCity2").html('Tomorrow');
 						$('#weather1High').html('<span class="label">High: </span><span class="bold">'+weather.high +'&deg; </span>'+weather.units.temp);
 						$('#weather1Low').html('<span class="label">Low: </span><span class="bold">'+weather.low +'&deg; </span>'+weather.units.temp);
 						$('#weather2High').html('<span class="label">High: </span><span class="bold">'+weather.tomorrow.high +'&deg; </span>'+weather.units.temp);
@@ -107,7 +109,7 @@ Edited By: dcinzona
 				</div>
 				<div id="Day1Weather" class="weatherSection">
 					<img id="weatherThumb1" class="weatherThumb" />
-					<h2 id="weatherCity1" class="weatherCity" >Forecast</h2>
+					<h2 id="weatherCity1" class="weatherCity" >Today</h2>
 					<div id="weatherTemp1" class="weatherTempHighLow" >
 						<div id="weather1High"></div>
 						<div id="weather1Low"></div>
