@@ -23,10 +23,14 @@ Edited By: dcinzona
 						$("#weatherCity").html(weather.city+', '+weather.region);
 						$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
 						$("#weatherCurrently").text(weather.currently);
-						$('#weatherCurrently1').text(weather.tomorrow.forecast);
-						$('#weather1High').html('<span class="label">High: </span><span class="bold">'+weather.tomorrow.high +'&deg; </span>'+weather.units.temp);
-						$('#weather1Low').html('<span class="label">Low: </span><span class="bold">'+weather.tomorrow.low +'&deg; </span>'+weather.units.temp);
-						$("#weatherThumb1").attr('src', weather.tomorrow.image);
+						$('#weatherCurrently1').text(weather.forecast);
+						$('#weatherCurrently2').text(weather.tomorrow.forecast);
+						$('#weather1High').html('<span class="label">High: </span><span class="bold">'+weather.high +'&deg; </span>'+weather.units.temp);
+						$('#weather1Low').html('<span class="label">Low: </span><span class="bold">'+weather.low +'&deg; </span>'+weather.units.temp);
+						$('#weather2High').html('<span class="label">High: </span><span class="bold">'+weather.tomorrow.high +'&deg; </span>'+weather.units.temp);
+						$('#weather2Low').html('<span class="label">Low: </span><span class="bold">'+weather.tomorrow.low +'&deg; </span>'+weather.units.temp);
+						$("#weatherThumb1").attr('src', weather.image);
+						$("#weatherThumb2").attr('src', weather.tomorrow.image);
 						setTimeout('getWeather()', 600000);
 					},
 					error: function(error) {
@@ -35,9 +39,15 @@ Edited By: dcinzona
 						$("#weatherTemp").html('');
 						$("#weatherCurrently").text('');
 						$('#weatherCurrently1').text('');
+						$("#weatherCity1").html('');
 						$('#weather1High').html('');
 						$('#weather1Low').html('');
 						$("#weatherThumb1").attr('');
+						$('#weatherCurrently2').text('');
+						$("#weatherCity2").html('');
+						$('#weather2High').html('');
+						$('#weather2Low').html('');
+						$("#weatherThumb2").attr('');
 						setTimeout('getWeather()',1000);
 					}
 				});				
@@ -88,7 +98,7 @@ Edited By: dcinzona
                     document.write("<img width=180 src=Private/"+Year()+".png>");
                 </script> 
             </div>
-			<div id="weather">
+			<div id="weather" class="forecast0">
 				<div id="Day0Weather" class="weatherSection">
 					<img id="weatherThumb" class="weatherThumb" />
 					<h2 id="weatherCity" class="weatherCity" ></h2>
@@ -97,18 +107,34 @@ Edited By: dcinzona
 				</div>
 				<div id="Day1Weather" class="weatherSection">
 					<img id="weatherThumb1" class="weatherThumb" />
-					<h2 id="weatherCity1" class="weatherCity" >Tomorrow</h2>
+					<h2 id="weatherCity1" class="weatherCity" >Forecast</h2>
 					<div id="weatherTemp1" class="weatherTempHighLow" >
 						<div id="weather1High"></div>
 						<div id="weather1Low"></div>
 					</div>
 					<div id="weatherCurrently1" class="weatherCurrently" ></div>
 				</div>
+					<div id="Day2Weather" class="weatherSection">
+						<img id="weatherThumb2" class="weatherThumb" />
+						<h2 id="weatherCity2" class="weatherCity" >Tomorrow</h2>
+						<div id="weatherTemp2" class="weatherTempHighLow" >
+							<div id="weather2High"></div>
+							<div id="weather2Low"></div>
+						</div>
+						<div id="weatherCurrently2" class="weatherCurrently" ></div>
+					</div>
 			</div>
 			<script>
 			getWeather();
+			var currentWeatherShowing = 0;
 			$('#weather').click(function(){
-				$(this).toggleClass('forecast');			
+				if(currentWeatherShowing>1)
+					currentWeatherShowing=0;		
+				else	
+					currentWeatherShowing++;	
+				$(this).attr('class','forecast'+currentWeatherShowing);
+				console.log($(this).attr('class'));
+				return false;
 			});
 			</script>
             <div id="unlock">

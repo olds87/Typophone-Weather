@@ -56,10 +56,6 @@ body {
 	font-family:"helvetica";
 	width:1600px;
 	position:absolute;
-	-webkit-transition: -webkit-transform .3s ease-in-out;
-	-webkit-transform: translateX(0px);
-	-webkit-perspective: 1000;
-	-webkit-backface-visibility: hidden;
 }
 .weatherCity, .weatherCurrently
 {
@@ -80,7 +76,7 @@ body {
 		width:250px;
 		top:38px;
 	}
-#weather1Low
+#weather1Low, #weather2Low
 {
 	font-size:.8em;
 	position:relative;
@@ -111,11 +107,28 @@ body {
 	width:320px;
 	height:200px;
 }
-#weather.forecast
+
+#weather.forecast0
+{
+	/*left:-320px;*/
+	-webkit-transition: -webkit-transform .3s ease-in-out;
+	-webkit-transform: translateX(0px);
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
+}
+#weather.forecast1
 {
 	/*left:-320px;*/
 	-webkit-transition: -webkit-transform .3s ease-in-out;
 	-webkit-transform: translateX(-320px);
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
+}
+#weather.forecast2
+{
+	/*left:-320px;*/
+	-webkit-transition: -webkit-transform .3s ease-in-out;
+	-webkit-transform: translateX(-640px);
 	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
 }
