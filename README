@@ -11,5 +11,15 @@ Changes I've made:
 To change your zipcode:
 
 	1. Edit the zipcode in zip.txt /private/var/stash/Themes.XXXX/Typophone GMT (or Typophone 4)
+		- zip is within an array of zips. If you only want one city, you can leave as array of just have one zip.
+		  
+		1 city: 
+			zip.txt content as array
+			[20814]
+			zip.txt content as text
+			20814
+		5 cities:
+			zip.txt must be an array
+			[20814,20036,20854,90210,85719]
 	
 	2. Respring
