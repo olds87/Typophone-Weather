@@ -6,8 +6,10 @@ Changes I've made:
 
 - Added jQuery and the simpleWeather plugin and styled it to include the current weather.
 
+- Added animations on tapping the weather.  Will now display today's forecast and tomorrow's forecast, then slide back to current conditions.
+
 To change your zipcode:
 
-	1. Edit the zipcode value on line 16 of LockBackground.html found here: /private/var/stash/Themes.XXXX/Typophone GMT (or Typophone 4)
+	1. Edit the zipcode in zip.txt /private/var/stash/Themes.XXXX/Typophone GMT (or Typophone 4)
 	
 	2. Respring
