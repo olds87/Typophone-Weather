@@ -57,65 +57,41 @@ Edited By: dcinzona
 					t.addClass('active').siblings('span').removeClass('active');
 					renderWeather(t.attr('ref'));
 				});
-				var locW = ((20*loc.length)-20);
-				loc.each(function(){
-					locW+=$(this).width();
-				});
-				if(locW>320)
+				if(cities.length >1)
 				{
 					$('#locationRight').addClass('visible');
-					pages = Math.ceil(locW/320);
-					locationArrows(locW);
+					locationArrows();
 				}
 			}
 		}
-		var pages = 0;
 		var currentPage = 1;
-		var distanceX=[10];
-		function locationArrows(totalWidth)
+		function locationArrows()
 		{
 			var right = $('#locationRight');
 			var left = $('#locationLeft');
 			var sel = $('#locationSelector');
-			for(var y =0; y<pages;y++)
-			{
-				var dist = 300;
-				var pos = distanceX[y-1]||10;
-				if(y>0){
-					distanceX[y] = (pos-(dist*currentPage) + 10);
-					if(y == pages-1){
-						if(pages>2)
-							distanceX[y] = (-1*(totalWidth-((currentPage-1*dist)+Math.abs(pos))))-pos-((currentPage-1)*10);
-						else
-							distanceX[y] = -(totalWidth-300);
-					}
-				}
-			}
 			right.click(function(){
+				left.addClass('visible');
 				var pos = sel.position().left;
-				if(pos>320-totalWidth){
+				if(currentPage<cities.length){
 					//slideLeft
-					var lft = distanceX[currentPage];
+					var lft = pos-320;
 					sel.attr('style','-webkit-transform: translateX('+lft+'px);');
 					currentPage ++;					
 				}
-				if(currentPage>1){
-					left.addClass('visible');
-					if(currentPage==pages)
+				if(currentPage==cities.length){
 						right.removeClass('visible');
 				}
-				else
-					left.removeClass('visible');
 			});
 			left.click(function(){
 				var pos = sel.position().left;
-				if(pos<10)
+				right.addClass('visible');
+				if(currentPage>1)
 				{
-					right.addClass('visible');
-					currentPage--;
-					var lft = distanceX[currentPage-1];
+					var lft = pos+320;
 					sel.attr('style','-webkit-transform: translateX('+lft+'px);');
-					if(currentPage-1==0){
+					currentPage--;
+					if(currentPage==1){
 						left.removeClass('visible');
 					}
 				}

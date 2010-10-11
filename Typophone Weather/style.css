@@ -56,8 +56,10 @@ body {
 }
 #locationSelector span
 {
-	margin-right:20px;
+	width:320px;
+	text-align:center;
 	font-size:1.2em;
+	display:inline-block;
 }
 #locationSelector span.active
 {
