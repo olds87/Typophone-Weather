@@ -13,7 +13,7 @@ Edited By: dcinzona
 		<script>
 		var zip = '85719';
 		var currentZip;
-		var cities;
+		var cities = [];
 		var count = 0;
 		var TO;
 		function isArray(obj) {
@@ -21,7 +21,7 @@ Edited By: dcinzona
 		}
 		function getLocationFromZip(){
 			//get all city locations (will only run if zip is array)
-			cities = zip;
+			cities.length = zip.length;
 			for(var i = 0; i<zip.length; i++)
 			{
 				var url = "http://pipes.yahoo.com/pipes/pipe.run?_id=73252b858424ed75a6206333ba8188bc&_render=json&_callback=?&Zipcode=";
@@ -32,7 +32,7 @@ Edited By: dcinzona
 					 			zip: item.Result.Zip };
 					cities[count] = cty;
 					count++;
-					listCities(count);
+					listCities();
 				});
 				   
 			}
@@ -40,17 +40,21 @@ Edited By: dcinzona
 				$(this).toggleClass('locations');
 			});				
 		}
-		function listCities(x){
+		function listCities(){
 			if(count==zip.length){
 				$('#locationSelector').html('');
-				for(var y = 0 ; y<count ; y++){
-					var cls="location";
-					var cty = cities[y];
-					if(cty.zip==currentZip){
-						cls="location active";
+				for(var l = 0 ; l<zip.length ; l++){
+					for(var y = 0 ; y<count ; y++){
+						var cls="location";
+						var cty = cities[y];
+						if(cty.zip==currentZip){
+							cls="location active";
+						}
+						if(zip[l] == cty.zip)
+							$('#locationSelector').append('<span ref="'+cty.zip+'" class="'+cls+'">'+cty.city+"</span>");
 					}
-					$('#locationSelector').append('<span ref="'+cty.zip+'" class="'+cls+'">'+cty.city+"</span>");
 				}
+				
 				var loc = $('.location');
 				loc.click(function(){
 					var t = $(this);
