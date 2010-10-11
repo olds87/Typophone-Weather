@@ -11,49 +11,183 @@ Edited By: dcinzona
 		<script src="jquery.simpleWeather.min.js" charset="utf-8"></script>
         <script src="functions.js" type="text/javascript"></script>
 		<script>
-		function getWeather(){
-			var zip = '85719';
-			$.get('zip.txt', function(z){
-				zip = eval(z);
-				$.simpleWeather({
-					zipcode: zip,
-					unit: 'f',
-					success: function(weather) {
-						$("#weatherThumb").attr('src', weather.image);
-						$("#weatherCity").html(weather.city+', '+weather.region);
-						$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
-						$("#weatherCurrently").text(weather.currently);
-						$('#weatherCurrently1').text(weather.forecast);
-						$('#weatherCurrently2').text(weather.tomorrow.forecast);
-						$("#weatherCity1").html('Today');
-						$("#weatherCity2").html('Tomorrow');
-						$('#weather1High').html('<span class="label">High: </span><span class="bold">'+weather.high +'&deg; </span>'+weather.units.temp);
-						$('#weather1Low').html('<span class="label">Low: </span><span class="bold">'+weather.low +'&deg; </span>'+weather.units.temp);
-						$('#weather2High').html('<span class="label">High: </span><span class="bold">'+weather.tomorrow.high +'&deg; </span>'+weather.units.temp);
-						$('#weather2Low').html('<span class="label">Low: </span><span class="bold">'+weather.tomorrow.low +'&deg; </span>'+weather.units.temp);
-						$("#weatherThumb1").attr('src', weather.image);
-						$("#weatherThumb2").attr('src', weather.tomorrow.image);
-						setTimeout('getWeather()', 600000);
-					},
-					error: function(error) {
-						$("#weatherThumb").attr('src', '');//replace with loading
-						$("#weatherCity").html('');
-						$("#weatherTemp").html('');
-						$("#weatherCurrently").text('');
-						$('#weatherCurrently1').text('');
-						$("#weatherCity1").html('');
-						$('#weather1High').html('');
-						$('#weather1Low').html('');
-						$("#weatherThumb1").attr('');
-						$('#weatherCurrently2').text('');
-						$("#weatherCity2").html('');
-						$('#weather2High').html('');
-						$('#weather2Low').html('');
-						$("#weatherThumb2").attr('');
-						setTimeout('getWeather()',1000);
+		var zip = '85719';
+		var currentZip;
+		var cities;
+		var count = 0;
+		var TO;
+		function isArray(obj) {
+			return (obj.constructor.toString().indexOf("Array") != -1);
+		}
+		function getLocationFromZip(){
+			//get all city locations (will only run if zip is array)
+			cities = zip;
+			for(var i = 0; i<zip.length; i++)
+			{
+				var url = "http://pipes.yahoo.com/pipes/pipe.run?_id=73252b858424ed75a6206333ba8188bc&_render=json&_callback=?&Zipcode=";
+				var rurl = url + zip[i];
+				$.getJSON(rurl, function(d){
+					var item = d.value.items[0];
+					var cty = { city: item.Result.City + ', ' + item.Result.State,
+					 			zip: item.Result.Zip };
+					cities[count] = cty;
+					count++;
+					listCities(count);
+				});
+				   
+			}
+			$('#timeWrap').click(function(){
+				$(this).toggleClass('locations');
+			});				
+		}
+		function listCities(x){
+			if(count==zip.length){
+				$('#locationSelector').html('');
+				for(var y = 0 ; y<count ; y++){
+					var cls="location";
+					var cty = cities[y];
+					if(cty.zip==currentZip){
+						cls="location active";
 					}
-				});				
+					$('#locationSelector').append('<span ref="'+cty.zip+'" class="'+cls+'">'+cty.city+"</span>");
+				}
+				var loc = $('.location');
+				loc.click(function(){
+					var t = $(this);
+					t.addClass('active').siblings('span').removeClass('active');
+					renderWeather(t.attr('ref'));
+				});
+				var locW = ((20*loc.length)-20);
+				loc.each(function(){
+					locW+=$(this).width();
+				});
+				if(locW>320)
+				{
+					$('#locationRight').addClass('visible');
+					pages = Math.ceil(locW/320);
+					locationArrows(locW);
+				}
+			}
+		}
+		var pages = 0;
+		var currentPage = 1;
+		var distanceX=[10];
+		function locationArrows(totalWidth)
+		{
+			var right = $('#locationRight');
+			var left = $('#locationLeft');
+			var sel = $('#locationSelector');
+			for(var y =0; y<pages;y++)
+			{
+				var dist = 300;
+				var pos = distanceX[y-1]||10;
+				if(y>0){
+					distanceX[y] = (pos-(dist*currentPage) + 10);
+					if(y == pages-1){
+						if(pages>2)
+							distanceX[y] = (-1*(totalWidth-((currentPage-1*dist)+Math.abs(pos))))-pos-((currentPage-1)*10);
+						else
+							distanceX[y] = -(totalWidth-300);
+					}
+				}
+			}
+			right.click(function(){
+				var pos = sel.position().left;
+				if(pos>320-totalWidth){
+					//slideLeft
+					var lft = distanceX[currentPage];
+					sel.attr('style','-webkit-transform: translateX('+lft+'px);');
+					currentPage ++;					
+				}
+				if(currentPage>1){
+					left.addClass('visible');
+					if(currentPage==pages)
+						right.removeClass('visible');
+				}
+				else
+					left.removeClass('visible');
 			});
+			left.click(function(){
+				var pos = sel.position().left;
+				if(pos<10)
+				{
+					right.addClass('visible');
+					currentPage--;
+					var lft = distanceX[currentPage-1];
+					sel.attr('style','-webkit-transform: translateX('+lft+'px);');
+					if(currentPage-1==0){
+						left.removeClass('visible');
+					}
+				}
+			});
+		}
+		function renderWeather(z)
+		{
+			var loader = $('#loader').show();
+			currentZip = z;
+			if(TO)
+				clearTimeout(TO);
+			$.simpleWeather({
+				zipcode: currentZip,
+				unit: 'f',
+				success: function(weather) {
+					$("#weatherThumb").attr('src', weather.image);
+					$("#weatherCity").html(weather.city+', '+weather.region);
+					$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
+					$("#weatherCurrently").text(weather.currently);
+					$('#weatherCurrently1').text(weather.forecast);
+					$('#weatherCurrently2').text(weather.tomorrow.forecast);
+					$("#weatherCity1").html('Today');
+					$("#weatherCity2").html('Tomorrow');
+					$('#weather1High').html('<span class="label">High: </span><span class="bold">'+weather.high +'&deg; </span>'+weather.units.temp);
+					$('#weather1Low').html('<span class="label">Low: </span><span class="bold">'+weather.low +'&deg; </span>'+weather.units.temp);
+					$('#weather2High').html('<span class="label">High: </span><span class="bold">'+weather.tomorrow.high +'&deg; </span>'+weather.units.temp);
+					$('#weather2Low').html('<span class="label">Low: </span><span class="bold">'+weather.tomorrow.low +'&deg; </span>'+weather.units.temp);
+					$("#weatherThumb1").attr('src', weather.image);
+					$("#weatherThumb2").attr('src', weather.tomorrow.image);
+					TO = setTimeout('getWeather()', 600000);
+					loader.hide();
+				},
+				error: function(error) {
+					$("#weatherThumb").attr('src', '');//replace with loading
+					$("#weatherCity").html('');
+					$("#weatherTemp").html('');
+					$("#weatherCurrently").text('');
+					$('#weatherCurrently1').text('');
+					$("#weatherCity1").html('');
+					$('#weather1High').html('');
+					$('#weather1Low').html('');
+					$("#weatherThumb1").attr('');
+					$('#weatherCurrently2').text('');
+					$("#weatherCity2").html('');
+					$('#weather2High').html('');
+					$('#weather2Low').html('');
+					$("#weatherThumb2").attr('');
+					TO = setTimeout('getWeather()',1000);
+					loader.hide();
+				}
+			});
+		}
+		function getWeather(z){
+			if(!isArray(zip)){
+					$.get('zip.txt', function(z){
+						zip = eval(z);
+						if(isArray(zip))
+						{
+							currentZip = zip[0];
+							if(zip.length>1){
+								getLocationFromZip();
+							}
+						}
+						else
+							currentZip = zip;
+						renderWeather(currentZip);
+					});
+				}
+			else
+			{
+				renderWeather(currentZip);
+			}
 			
 		}
 		</script>
@@ -61,6 +195,10 @@ Edited By: dcinzona
     </head>
     <body onload="handle()">
         <base href="Private"/>
+		<div id="locationSelector"></div>
+		<div id="locationLeft" class="locationArrows"></div>
+		<div id="locationRight" class="locationArrows"></div>
+		<div id="timeWrap" class="">
             <div id="mainDiv">
                 <table id="divtable">
                     <tr>
@@ -100,9 +238,10 @@ Edited By: dcinzona
                     document.write("<img width=180 src=Private/"+Year()+".png>");
                 </script> 
             </div>
+		</div>
 			<div id="weather" class="forecast0">
 				<div id="Day0Weather" class="weatherSection">
-					<img id="weatherThumb" class="weatherThumb" />
+					<img id="weatherThumb" class="weatherThumb"/>
 					<h2 id="weatherCity" class="weatherCity" ></h2>
 					<div id="weatherTemp" class="weatherTemp" ></div>
 					<div id="weatherCurrently" class="weatherCurrently" ></div>
@@ -135,10 +274,10 @@ Edited By: dcinzona
 				else	
 					currentWeatherShowing++;	
 				$(this).attr('class','forecast'+currentWeatherShowing);
-				console.log($(this).attr('class'));
 				return false;
 			});
 			</script>
+			<div id="loader"></div>
             <div id="unlock">
                 <script type="text/javascript">
                     document.write("<img width=130 src=Private/Unlock.png>");
