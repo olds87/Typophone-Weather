@@ -37,7 +37,14 @@ Edited By: dcinzona
 				   
 			}
 			$('#timeWrap').click(function(){
-				$(this).toggleClass('locations');
+				$(this).toggleClass('showSelector');
+				var wth = $('#weather');
+				wth.toggleClass('showSelector');
+				/*if(wth.position().top<290)
+					wth.attr('style','-webkit-transform: translateY(15px);');
+				else
+					wth.attr('style','-webkit-transform: translateY(0px);');*/
+					
 			});				
 		}
 		function listCities(){
@@ -175,6 +182,7 @@ Edited By: dcinzona
     </head>
     <body onload="handle()">
         <base href="Private"/>
+		<div id="locationSelectorBG"></div>
 		<div id="locationSelector"></div>
 		<div id="locationLeft" class="locationArrows"></div>
 		<div id="locationRight" class="locationArrows"></div>
@@ -253,7 +261,9 @@ Edited By: dcinzona
 					currentWeatherShowing=0;		
 				else	
 					currentWeatherShowing++;	
-				$(this).attr('class','forecast'+currentWeatherShowing);
+				var t = $(this);
+				t.attr('class','forecast'+currentWeatherShowing);
+				$('#timeWrap').removeClass('showSelector');
 				return false;
 			});
 			</script>
