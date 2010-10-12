@@ -61,7 +61,6 @@ Edited By: dcinzona
 							$('#locationSelector').append('<span ref="'+cty.zip+'" class="'+cls+'">'+cty.city+"</span>");
 					}
 				}
-				
 				var loc = $('.location');
 				loc.click(function(){
 					var t = $(this);
@@ -182,8 +181,8 @@ Edited By: dcinzona
     </head>
     <body onload="handle()">
         <base href="Private"/>
-		<div id="locationSelectorBG"></div>
-		<div id="locationSelector"></div>
+		<div id="locationSelectorBG" class="lc" style="display:none;"></div>
+		<div id="locationSelector" class="lc" style="display:none;"></div>
 		<div id="locationLeft" class="locationArrows"></div>
 		<div id="locationRight" class="locationArrows"></div>
 		<div id="timeWrap" class="">
@@ -271,6 +270,9 @@ Edited By: dcinzona
             <div id="unlock">
                 <script type="text/javascript">
                     document.write("<img width=130 src=Private/Unlock.png>");
+					$(document).ready(function(){
+						$('.lc').show();	
+					});
                 </script>
             </div>
     </body>
