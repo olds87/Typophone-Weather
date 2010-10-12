@@ -71,15 +71,17 @@ body {
 {
 	text-shadow:0 0 5px black;
 	width:320px;
+	font-weight:bold;
 	text-align:center;
 	font-size:1.2em;
 	display:inline-block;
+	opacity:.7;
 }
 #locationSelector span.active
 {
 	text-shadow:0 0 10px black;
 	font-size:1.5em;
-	font-weight:bold;
+	opacity:1;
 }
 .locationArrows
 {
