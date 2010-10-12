@@ -61,7 +61,7 @@ body {
 	position:absolute;
 	top:223px;
 	width:1600px;
-	-webkit-transform: translateX(10px);
+	-webkit-transform: translateX(0px);
 	-webkit-transition: -webkit-transform .3s ease-in-out;
 	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
