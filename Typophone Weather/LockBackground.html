@@ -24,17 +24,28 @@ Edited By: dcinzona
 			cities.length = zip.length;
 			for(var i = 0; i<zip.length; i++)
 			{
-				var url = "http://pipes.yahoo.com/pipes/pipe.run?_id=73252b858424ed75a6206333ba8188bc&_render=json&_callback=?&Zipcode=";
-				var rurl = url + zip[i];
-				$.getJSON(rurl, function(d){
-					var item = d.value.items[0];
-					var cty = { city: item.Result.City + ', ' + item.Result.State,
-					 			zip: item.Result.Zip };
-					cities[count] = cty;
+				console.log(parseInt(zip[i]));
+				if(parseInt(zip[i]).toString()!='NaN')
+				{
+					var url = "http://pipes.yahoo.com/pipes/pipe.run?_id=73252b858424ed75a6206333ba8188bc&_render=json&_callback=?&Zipcode=";
+					var rurl = url + zip[i];
+					$.getJSON(rurl, function(d){
+						var item = d.value.items[0];
+						var result = item.Result;
+						var cty = { city: item.Result.City + ', ' + item.Result.State,
+						 			zip: item.Result.Zip };
+						cities[count] = cty;
+						count++;
+						listCities();
+					});
+			    }
+				else
+				{
+					cities[count] = { city: zip[i],
+		 					zip: zip[i] };
 					count++;
 					listCities();
-				});
-				   
+				}
 			}
 			$('#timeWrap').click(function(){
 				var t = $(this);
@@ -109,15 +120,25 @@ Edited By: dcinzona
 		function renderWeather(z)
 		{
 			var loader = $('#loader').show();
+			var cLoc = "";
+			ztemp = parseInt(z);
 			currentZip = z;
+			if(currentZip!='NaN')
+				cLoc = z;
 			if(TO)
 				clearTimeout(TO);
 			$.simpleWeather({
+				location: cLoc,
 				zipcode: currentZip,
 				unit: 'f',
 				success: function(weather) {
+					var region = ', ' + weather.region;
+					if(region == ', ')
+					{
+						region = ', ' + weather.country;
+					}
 					$("#weatherThumb").attr('src', weather.image);
-					$("#weatherCity").html(weather.city+', '+weather.region);
+					$("#weatherCity").html(weather.city+region);
 					$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
 					$("#weatherCurrently").text(weather.currently);
 					$('#weatherCurrently1').text(weather.forecast);
