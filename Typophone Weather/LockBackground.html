@@ -15,7 +15,7 @@ Edited By: dcinzona
 		var currentZip;
 		var cities = [];
 		var count = 0;
-		var TO;
+		var TO, toShow;
 		function isArray(obj) {
 			return (obj.constructor.toString().indexOf("Array") != -1);
 		}
@@ -37,15 +37,14 @@ Edited By: dcinzona
 				   
 			}
 			$('#timeWrap').click(function(){
-				$(this).toggleClass('showSelector');
-				var wth = $('#weather');
-				wth.toggleClass('showSelector');
-				/*if(wth.position().top<290)
-					wth.attr('style','-webkit-transform: translateY(15px);');
-				else
-					wth.attr('style','-webkit-transform: translateY(0px);');*/
-					
+				var t = $(this);
+				showSelector(t);	
 			});				
+		}
+		function showSelector(el){
+			el.toggleClass('showSelector');
+			var wth = $('#weather');
+			wth.toggleClass('showSelector');
 		}
 		function listCities(){
 			if(count==zip.length){
@@ -181,8 +180,8 @@ Edited By: dcinzona
     </head>
     <body onload="handle()">
         <base href="Private"/>
-		<div id="locationSelectorBG" class="lc" style="display:none;"></div>
-		<div id="locationSelector" class="lc" style="display:none;"></div>
+		<div id="locationSelectorBG"></div>
+		<div id="locationSelector"></div>
 		<div id="locationLeft" class="locationArrows"></div>
 		<div id="locationRight" class="locationArrows"></div>
 		<div id="timeWrap" class="">
@@ -270,9 +269,6 @@ Edited By: dcinzona
             <div id="unlock">
                 <script type="text/javascript">
                     document.write("<img width=130 src=Private/Unlock.png>");
-					$(document).ready(function(){
-						$('.lc').show();	
-					});
                 </script>
             </div>
     </body>

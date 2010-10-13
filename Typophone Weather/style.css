@@ -25,10 +25,10 @@ body {
 }
 #timeWrap
 {
-	top:1px;
+	top:0px;
 	position:absolute;
 	-webkit-transition: -webkit-transform .3s ease-in-out;
-	-webkit-transform: translateY(1px);
+	-webkit-transform: translateY(0px);
 	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
 	background-color:black;
@@ -40,16 +40,17 @@ body {
 #timeWrap.showSelector
 {
 	-webkit-transition: -webkit-transform .3s ease-in-out;
-	-webkit-transform: translateY(-52px);
+	-webkit-transform: translateY(-100px);
 	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
+	border-bottom:solid 1px #303030;
 }
 #locationSelectorBG
 {
 	position:absolute;
 	height:94px;
 	display:block;
-	top:228px;
+	top:181px;
 	width:320px;
 	background:transparent url('linen.png') no-repeat center;
 }
@@ -59,7 +60,7 @@ body {
 	height:94px;
 	padding-top:38px;
 	position:absolute;
-	top:223px;
+	top:176px;
 	width:1600px;
 	-webkit-transform: translateX(0px);
 	-webkit-transition: -webkit-transform .3s ease-in-out;
@@ -89,7 +90,7 @@ body {
 	width:55px;
 	height:94px;
 	display:none;
-	top:230px;
+	top:183px;
 }
 #locationLeft
 {
@@ -233,7 +234,9 @@ left:265px;
 }
 	#weather.showSelector
 	{
-		-webkit-transform: translateY(47px)!important;
+		-webkit-transform: translateX(0px);
+		border-top:solid 1px #303030;
+		top:274px;
 	}
 .weatherCurrently, .weatherThumb, .weatherCity, .weatherTemp, .weatherTempHighLow{
 	position:absolute;
