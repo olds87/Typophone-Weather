@@ -25,10 +25,10 @@ body {
 }
 #timeWrap
 {
-	top:0px;
+	top:1px;
 	position:absolute;
 	-webkit-transition: -webkit-transform .3s ease-in-out;
-	-webkit-transform: translateY(0px);
+	-webkit-transform: translateY(1px);
 	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
 	background-color:black;
