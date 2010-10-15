@@ -16,6 +16,7 @@ Edited By: dcinzona
 		var cities = [];
 		var count = 0;
 		var TO, toShow;
+		var unit = 'f';
 		function isArray(obj) {
 			return (obj.constructor.toString().indexOf("Array") != -1);
 		}
@@ -130,7 +131,7 @@ Edited By: dcinzona
 			$.simpleWeather({
 				location: cLoc,
 				zipcode: currentZip,
-				unit: 'f',
+				unit: unit,
 				success: function(weather) {
 					var region = ', ' + weather.region;
 					if(region == ', ')
@@ -176,20 +177,23 @@ Edited By: dcinzona
 		}
 		function getWeather(z){
 			if(!isArray(zip)){
-					$.get('zip.txt', function(z){
-						zip = eval(z);
-						if(isArray(zip))
-						{
-							currentZip = zip[0];
-							if(zip.length>1){
-								getLocationFromZip();
-							}
+				$.get('unit.txt', function(d){
+					unit = eval(d).substring(0,1).toLowerCase();
+				})
+				$.get('zip.txt', function(z){
+					zip = eval(z);
+					if(isArray(zip))
+					{
+						currentZip = zip[0];
+						if(zip.length>1){
+							getLocationFromZip();
 						}
-						else
-							currentZip = zip;
-						renderWeather(currentZip);
-					});
-				}
+					}
+					else
+						currentZip = zip;
+					renderWeather(currentZip);
+				});
+			}
 			else
 			{
 				renderWeather(currentZip);
