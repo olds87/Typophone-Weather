@@ -10,16 +10,23 @@ Changes I've made:
 
 To change your zipcode:
 
-	1. Edit the zipcode in zip.txt /private/var/stash/Themes.XXXX/Typophone GMT (or Typophone 4)
-		- zip is within an array of zips. If you only want one city, you can leave as array of just have one zip.
-		  
-		1 city: 
-			zip.txt content as array
-			[20814]
-			zip.txt content as text
-			20814
-		5 cities:
-			zip.txt must be an array
-			[20814,20036,20854,90210,85719]
+	1. Edit the places object in weather.txt.  You can add objects or remove them.  A single object will disable the city selector and only display weather for that city.
 	
 	2. Respring
+	
+Format for weather.txt:
+
+{ units : "f" , places : [ 
+{ cityName: "Bethesda, MD" , zip: "USMD0034" }, 
+{ cityName: "Washington, DC" , zip: "20036" } 
+] }
+
+Units can be f or c.
+
+cityName is the text that will be displayed in the city selector.
+zip can be US zip code or Weather station code.
+
+You can find it by going here:
+http://xoap.weather.com/search/search?where=Bethesda
+
+Use loc id value for zip.
