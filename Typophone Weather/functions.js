@@ -1,6 +1,8 @@
 basePath = 'Private/';
 AM_PM = true;    // switch between 12 (true) and 24 (false) hour format ! Respring to take effect !
-
+function isArray(obj) {
+	return (obj.constructor.toString().indexOf("Array") != -1);
+}
 function handle() {
     setTimeout('handle()',1000);
     setHour(getHour(AM_PM), AM_PM);

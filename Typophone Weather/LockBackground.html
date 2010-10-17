@@ -11,79 +11,42 @@ Edited By: dcinzona
 		<script src="jquery.simpleWeather.min.js" charset="utf-8"></script>
         <script src="functions.js" type="text/javascript"></script>
 		<script>
-		var zip = '85719';
-		var currentZip;
-		var cities = [];
-		var count = 0;
+		var weather = {};
 		var TO, toShow;
-		var unit = 'f';
-		function isArray(obj) {
-			return (obj.constructor.toString().indexOf("Array") != -1);
-		}
-		function getLocationFromZip(){
-			//get all city locations (will only run if zip is array)
-			cities.length = zip.length;
-			for(var i = 0; i<zip.length; i++)
-			{
-				console.log(parseInt(zip[i]));
-				if(parseInt(zip[i]).toString()!='NaN')
-				{
-					var url = "http://pipes.yahoo.com/pipes/pipe.run?_id=73252b858424ed75a6206333ba8188bc&_render=json&_callback=?&Zipcode=";
-					var rurl = url + zip[i];
-					$.getJSON(rurl, function(d){
-						var item = d.value.items[0];
-						var result = item.Result;
-						var cty = { city: item.Result.City + ', ' + item.Result.State,
-						 			zip: item.Result.Zip };
-						cities[count] = cty;
-						count++;
-						listCities();
-					});
-			    }
-				else
-				{
-					cities[count] = { city: zip[i],
-		 					zip: zip[i] };
-					count++;
-					listCities();
-				}
-			}
-			$('#timeWrap').click(function(){
-				var t = $(this);
-				showSelector(t);	
-			});				
-		}
+		var currentZip;
+		var temp;
 		function showSelector(el){
 			el.toggleClass('showSelector');
 			var wth = $('#weather');
 			wth.toggleClass('showSelector');
 		}
 		function listCities(){
-			if(count==zip.length){
-				$('#locationSelector').html('');
-				for(var l = 0 ; l<zip.length ; l++){
-					for(var y = 0 ; y<count ; y++){
-						var cls="location";
-						var cty = cities[y];
-						if(cty.zip==currentZip){
-							cls="location active";
-						}
-						if(zip[l] == cty.zip)
-							$('#locationSelector').append('<span ref="'+cty.zip+'" class="'+cls+'">'+cty.city+"</span>");
-					}
+			
+			$('#locationSelector').html('');
+			
+			//populate locations selector
+			for(var l = 0 ; l<weather.places.length ; l++){
+				var cls="location";
+				var cty = weather.places[l];
+				if(cty.zip==currentZip){
+					cls="location active";
 				}
-				var loc = $('.location');
-				loc.click(function(){
-					var t = $(this);
-					t.addClass('active').siblings('span').removeClass('active');
-					renderWeather(t.attr('ref'));
-				});
-				if(cities.length >1)
-				{
-					$('#locationRight').addClass('visible');
-					locationArrows();
-				}
+				$('#locationSelector').append('<span ref="'+cty.zip+'" class="'+cls+'">'+cty.cityName+"</span>");
 			}
+			//Activate interactions
+			var loc = $('.location');
+			loc.click(function(){
+				var t = $(this);
+				t.addClass('active').siblings('span').removeClass('active');
+				renderWeather(t.attr('ref'));
+			});
+			$('#locationRight').addClass('visible');
+			locationArrows();				
+			
+			$('#timeWrap').click(function(){
+				var t = $(this);
+				showSelector(t);	
+			});
 		}
 		var currentPage = 1;
 		function locationArrows()
@@ -94,13 +57,13 @@ Edited By: dcinzona
 			right.click(function(){
 				left.addClass('visible');
 				var pos = sel.position().left;
-				if(currentPage<cities.length){
+				if(currentPage<weahter.places.length){
 					//slideLeft
 					var lft = pos-320;
 					sel.attr('style','-webkit-transform: translateX('+lft+'px);');
 					currentPage ++;					
 				}
-				if(currentPage==cities.length){
+				if(currentPage==weather.places.length){
 						right.removeClass('visible');
 				}
 			});
@@ -121,17 +84,13 @@ Edited By: dcinzona
 		function renderWeather(z)
 		{
 			var loader = $('#loader').show();
-			var cLoc = "";
-			ztemp = parseInt(z);
 			currentZip = z;
-			if(currentZip!='NaN')
-				cLoc = z;
 			if(TO)
 				clearTimeout(TO);
 			$.simpleWeather({
-				location: cLoc,
+				//location: cLoc,
 				zipcode: currentZip,
-				unit: unit,
+				unit: temp,
 				success: function(weather) {
 					var region = ', ' + weather.region;
 					if(region == ', ')
@@ -176,21 +135,18 @@ Edited By: dcinzona
 			});
 		}
 		function getWeather(z){
-			if(!isArray(zip)){
-				$.get('unit.txt', function(d){
-					unit = eval(d).substring(0,1).toLowerCase();
-				})
-				$.get('zip.txt', function(z){
-					zip = eval(z);
-					if(isArray(zip))
-					{
-						currentZip = zip[0];
-						if(zip.length>1){
-							getLocationFromZip();
-						}
+			if(!weather.places){
+				//GET Weather.txt
+				$.get('weather.txt', function(d){
+					weather = eval("("+d+")");
+					temp = weather.units.substr(0,1).toLowerCase();
+					if(isArray(weather.places)){
+						if(weather.places.length>1)
+							listCities();
+						currentZip = weather.places[0].zip;
 					}
 					else
-						currentZip = zip;
+						currentZip = weather.places.zip;
 					renderWeather(currentZip);
 				});
 			}
