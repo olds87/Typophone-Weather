@@ -85,7 +85,7 @@ Edited By: dcinzona
 		}
 		function renderWeather(z)
 		{
-			var loader = $('#loader').show();
+			var loader = $('#loader').addClass('visible');
 			currentZip = z;
 			if(TO)
 				clearTimeout(TO);
@@ -114,7 +114,7 @@ Edited By: dcinzona
 					$("#weatherThumb1").attr('src', weather.image);
 					$("#weatherThumb2").attr('src', weather.tomorrow.image);
 					TO = setTimeout('getWeather()', 600000);
-					loader.hide();
+					loader.removeClass('visible');
 				},
 				error: function(error) {
 					$("#weatherThumb").attr('src', '');//replace with loading
@@ -132,7 +132,7 @@ Edited By: dcinzona
 					$('#weather2Low').html('');
 					$("#weatherThumb2").attr('');
 					TO = setTimeout('getWeather()',1000);
-					loader.hide();
+					loader.removeClass('visible');
 				}
 			});
 		}

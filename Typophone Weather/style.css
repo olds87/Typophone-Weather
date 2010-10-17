@@ -20,8 +20,12 @@ body {
 	position:absolute;
 	top:300px;
 	left:150px;
-	display:none;
 	opacity:.8;
+	display:none;
+}
+#loader.visible
+{
+	display:block;
 }
 #timeWrap
 {
