@@ -77,12 +77,19 @@ body {
 #locationSelector span
 {
 	text-shadow:0 0 5px black;
-	width:320px;
+	width:220px;
 	font-weight:bold;
 	text-align:center;
 	font-size:1.2em;
 	display:inline-block;
 	opacity:.7;
+}
+.location
+{
+	text-overflow: ellipsis;
+	margin:0px 50px;
+	overflow: hidden;
+	white-space:nowrap;
 }
 #locationSelector span.active
 {
