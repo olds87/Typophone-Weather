@@ -14,14 +14,16 @@ body {
 }
 #loader
 {
-	background: transparent url('ajax-loader.gif') no-repeat center;
-	width:50px;
-	height:50px;
+	background:url("ajax-loader.gif") no-repeat scroll center center black;
+	display:none;
+	height:80px;
+	left:120px;
+	opacity:0.8;
 	position:absolute;
 	top:300px;
-	left:150px;
-	opacity:.8;
-	display:none;
+	width:80px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 }
 #loader.visible
 {
