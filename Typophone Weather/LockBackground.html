@@ -21,14 +21,16 @@ Edited By: dcinzona
 			wth.toggleClass('showSelector');
 		}
 		function listCities(){
-			
+			if(navigator.userAgent.toLowerCase().match("mozilla"))
+				$('#timeWrap').hide();
 			$('#locationSelector').html('');
 			
 			//populate locations selector
 			for(var l = 0 ; l<weather.places.length ; l++){
 				var cls="location";
 				var cty = weather.places[l];
-				if(cty.zip==currentZip){
+				console.log(cty.zip + "==" +currentZip);
+				if(cty.zip==currentZip || (!currentZip && l==0)){
 					cls="location active";
 				}
 				$('#locationSelector').append('<span ref="'+cty.zip+'" class="'+cls+'">'+cty.cityName+"</span>");
@@ -57,7 +59,7 @@ Edited By: dcinzona
 			right.click(function(){
 				left.addClass('visible');
 				var pos = sel.position().left;
-				if(currentPage<weahter.places.length){
+				if(currentPage<weather.places.length){
 					//slideLeft
 					var lft = pos-320;
 					sel.attr('style','-webkit-transform: translateX('+lft+'px);');
