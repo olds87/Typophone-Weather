@@ -5,7 +5,7 @@
 <key>ALARM_LOCK_LABEL</key>
 <string> </string>
 <key>AWAY_LOCK_LABEL</key>
-<string>Unlock</string>
+<string> </string>
 <key>CALENDAR_LOCK_LABEL</key>
 <string> </string>
 <key>CF_USER_NOTE_LOCK_LABEL</key>

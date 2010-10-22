@@ -217,12 +217,19 @@ left:265px;
 	height:400px;
 	width:1600px;
 	position:absolute;
-	-webkit-transition: -webkit-transform .3s ease-in-out;
+	-webkit-transition-property: -webkit-transform, opacity;
+	-webkit-transition-duration: .3s, .2s;
+	-webkit-timing-function: ease-in-out, ease-in-out;
 	-webkit-transform: translateY(275px);
 	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
 	background:black;
 	display:block;
+	opacity:1;
+}
+#weather.loading
+{
+	opacity:.4;
 }
 #weather.forecast0
 {
@@ -259,3 +266,14 @@ left:265px;
 	position:absolute; 
 	background:black;
 	}
+#unlock
+{
+	opacity:1;
+	-webkit-transition: opacity 2s ease-in-out;
+}
+#unlock.faded
+{
+	opacity:.4;
+}
+
+	

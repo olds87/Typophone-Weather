@@ -85,7 +85,7 @@ Edited By: dcinzona
 		}
 		function renderWeather(z)
 		{
-			var loader = $('#loader').addClass('visible');
+			var loader = $('#weather').addClass('loading');
 			currentZip = z;
 			if(TO)
 				clearTimeout(TO);
@@ -114,7 +114,7 @@ Edited By: dcinzona
 					$("#weatherThumb1").attr('src', weather.image);
 					$("#weatherThumb2").attr('src', weather.tomorrow.image);
 					TO = setTimeout('getWeather()', 600000);
-					loader.removeClass('visible');
+					loader.removeClass('loading');
 				},
 				error: function(error) {
 					$("#weatherThumb").attr('src', '');//replace with loading
@@ -132,7 +132,7 @@ Edited By: dcinzona
 					$('#weather2Low').html('');
 					$("#weatherThumb2").attr('');
 					TO = setTimeout('getWeather()',1000);
-					loader.removeClass('visible');
+					loader.removeClass('loading');
 				}
 			});
 		}
@@ -251,8 +251,24 @@ Edited By: dcinzona
 			<div id="loader"></div>
             <div id="unlock">
                 <script type="text/javascript">
-                  //  document.write("<img width=130 src=Private/Unlock.png>");
+                    document.write("<img width=130 src=Private/Unlock.png>");
                 </script>
             </div>
+			<script>
+			var fadeTO;
+			function fadeUnlock(){
+				var u = $('#unlock');
+				u.addClass('faded');
+				if(fadeTO){
+					clearTimeout(fadeTO);
+				}
+				fadeTO = setTimeout(function(){
+					$('#unlock').removeClass('faded');
+					fadeTO = setTimeout('fadeUnlock()', 2000);
+				}, 2000);
+			}
+			
+			fadeUnlock();
+			</script>
     </body>
 </html>
