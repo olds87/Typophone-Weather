@@ -254,21 +254,5 @@ Edited By: dcinzona
                     document.write("<img width=130 src=Private/Unlock.png>");
                 </script>
             </div>
-			<script>
-			var fadeTO;
-			function fadeUnlock(){
-				var u = $('#unlock');
-				u.addClass('faded');
-				if(fadeTO){
-					clearTimeout(fadeTO);
-				}
-				fadeTO = setTimeout(function(){
-					$('#unlock').removeClass('faded');
-					fadeTO = setTimeout('fadeUnlock()', 2000);
-				}, 2000);
-			}
-			
-			fadeUnlock();
-			</script>
     </body>
 </html>
