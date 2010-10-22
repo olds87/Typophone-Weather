@@ -122,32 +122,51 @@ left:265px;
 #day {
     top:177px;
     left:135px;
+font-family:STHeitiSC-Medium;
+font-size:33px;
+text-transform:uppercase;
+font-weight:400;
+letter-spacing:8px;
 }
 
 #dayNumeric {
-    top:175px;
-    left:-18px;
+    top:154px;
+    left:-13px;
+font-family:Arial;
+font-size:125px;
+text-transform:uppercase;
+background-color:transparent!important;
+position:absolute;
 }
 
 #month {
-    top:121px;
-    left:3px;
+    top:117px;
+    left:-3px;
+	text-transform:uppercase;
+font-family:STHeitiSC-Light;
+font-size:64px;
+letter-spacing:6px;
 }
 
 #year {
-    top:208px;
+    top:205px;
     left:130px;
+font-family:STHeitiSC-Light;
+font-size:80px;
+font-weight:100;
 }
 
 #divtable {
     top: -165px;
-    left: -27px;
+    left: -12px;
     height: 461px;
 }
 
 #hr1, #hr2, #mn1, #mn2 {
-    width:77;
-    height:100;
+font-size:129px;	
+font-family:HelveticaNeue-Bold;
+top:3px;
+position:relative;
 }
 
 #ampm {
@@ -158,6 +177,23 @@ left:265px;
 #unlock {
 	top:422px;
     left:175px;
+}
+
+#weather{
+	top:275px;
+	height:400px;
+	width:1600px;
+	position:absolute;
+	-webkit-transition-property: -webkit-transform, opacity;
+	-webkit-transition-duration: .3s, .2s;
+	-webkit-timing-function: ease-in-out, ease-in-out;
+	-webkit-transform: translateY(275px);
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
+	background:black;
+	display:block;
+	opacity:1;
+	font-family:HelveticaNeue;
 }
 .weatherCity, .weatherCurrently
 {
@@ -212,21 +248,6 @@ left:265px;
 	top:-15px;
 }
 
-#weather{
-	top:275px;
-	height:400px;
-	width:1600px;
-	position:absolute;
-	-webkit-transition-property: -webkit-transform, opacity;
-	-webkit-transition-duration: .3s, .2s;
-	-webkit-timing-function: ease-in-out, ease-in-out;
-	-webkit-transform: translateY(275px);
-	-webkit-perspective: 1000;
-	-webkit-backface-visibility: hidden;
-	background:black;
-	display:block;
-	opacity:1;
-}
 #weather.loading
 {
 	opacity:.4;
@@ -262,8 +283,8 @@ left:265px;
 	position:absolute;
 	text-shadow:0px 0px 5px black;
 }
-#day, #dayNumeric, #month, #year, #divtable, #mainDiv, #unlock { 
-	position:absolute; 
+#day, #month, #year, #divtable, #mainDiv, #unlock { 
+	position:absolute;
 	background:black;
 	}
 #unlock.faded
@@ -285,7 +306,7 @@ left:265px;
 #unlock {
 	-webkit-animation-name: opacity;
 	-webkit-animation-duration: 4s;
-	-webkit-animation-iteration-count: 60;
+	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: alternate;
 	-webkit-animation-timing-function: ease-in-out;
 }
