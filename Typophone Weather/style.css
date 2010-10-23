@@ -1,3 +1,6 @@
+*{
+	-webkit-tap-highlight-color:transparent;
+}
 body {
     margin: 0;
     padding: 278px 0 0 0;
@@ -12,22 +15,52 @@ body {
 	text-shadow:0px 0px 5px black;
 	font-family:"helvetica";
 }
+@-webkit-keyframes loaderFadeOut {
+	0% {
+		opacity:.8;
+	}
+	50% {
+		opacity:.4;	
+	}
+	100% {
+		opacity:0;
+	}
+}
 #loader
 {
+	-webkit-animation-name: loaderFadeOut;
+	-webkit-animation-duration: .2s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: linear;
+	opacity:.8;
 	background:url("ajax-loader.gif") no-repeat scroll center center black;
 	display:none;
 	height:80px;
 	left:120px;
-	opacity:0.8;
 	position:absolute;
 	top:300px;
 	width:80px;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 }
+@-webkit-keyframes loaderFadeIn {
+	0% {
+		opacity:0;
+	}
+	50% {
+		opacity:.4;	
+	}
+	100% {
+		opacity:.8;
+	}
+}
 #loader.visible
 {
 	display:block;
+	-webkit-animation-name: loaderFadeIn;
+	-webkit-animation-duration: .2s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: linear;
 }
 #timeWrap
 {
@@ -179,21 +212,32 @@ position:relative;
     left:175px;
 }
 
+@-webkit-keyframes weatherFadeIn {
+	0% {
+		opacity:0;
+	}
+	50% {
+		opacity:.5;	
+	}
+	100% {
+		opacity:1;
+	}
+}
 #weather{
 	top:275px;
 	height:400px;
 	width:1600px;
 	position:absolute;
-	-webkit-transition-property: -webkit-transform, opacity;
-	-webkit-transition-duration: .3s, .2s;
-	-webkit-timing-function: ease-in-out, ease-in-out;
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transition-duration: .3s;
+	-webkit-timing-function: ease-in-out;
 	-webkit-transform: translateY(275px);
 	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
 	background:black;
 	display:block;
-	opacity:1;
 	font-family:HelveticaNeue;
+	opacity:1;
 }
 .weatherCity, .weatherCurrently
 {
@@ -248,9 +292,23 @@ position:relative;
 	top:-15px;
 }
 
+@-webkit-keyframes weatherFadeOut {
+	0% {
+		opacity:1;
+	}
+	50% {
+		opacity:.5;	
+	}
+	100% {
+		opacity:.0;
+	}
+}
 #weather.loading
 {
-	opacity:.4;
+	-webkit-animation-name: weatherFadeOut;
+	-webkit-animation-duration: .5s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: linear;
 }
 #weather.forecast0
 {

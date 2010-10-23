@@ -40,7 +40,7 @@ Edited By: dcinzona
 			loc.click(function(){
 				var t = $(this);
 				t.addClass('active').siblings('span').removeClass('active');
-				renderWeather(t.attr('ref'));
+				loadingAnimation(true, t.attr('ref'));
 			});
 			$('#locationRight').addClass('visible');
 			locationArrows();				
@@ -83,9 +83,17 @@ Edited By: dcinzona
 				}
 			});
 		}
+		function loadingAnimation(fadeOut, zip)
+		{
+			if(fadeOut){
+				$('#loader').addClass('visible');
+				renderWeather(zip);
+			}
+			else
+				$('#loader').removeClass('visible');
+		}
 		function renderWeather(z)
 		{
-			var loader = $('#weather').addClass('loading');
 			currentZip = z;
 			if(TO)
 				clearTimeout(TO);
@@ -114,7 +122,7 @@ Edited By: dcinzona
 					$("#weatherThumb1").attr('src', weather.image);
 					$("#weatherThumb2").attr('src', weather.tomorrow.image);
 					TO = setTimeout('getWeather()', 600000);
-					loader.removeClass('loading');
+					setTimeout(function(){loadingAnimation(false);},500);
 				},
 				error: function(error) {
 					$("#weatherThumb").attr('src', '');//replace with loading
@@ -132,11 +140,11 @@ Edited By: dcinzona
 					$('#weather2Low').html('');
 					$("#weatherThumb2").attr('');
 					TO = setTimeout('getWeather()',1000);
-					loader.removeClass('loading');
 				}
 			});
 		}
 		function getWeather(z){
+			loadingAnimation(false);
 			if(!weather.places){
 				//GET Weather.txt
 				$.get('weather.txt', function(d){
@@ -149,7 +157,7 @@ Edited By: dcinzona
 					}
 					else
 						currentZip = weather.places.zip;
-					renderWeather(currentZip);
+						renderWeather(currentZip);
 				});
 			}
 			else
@@ -261,11 +269,7 @@ Edited By: dcinzona
 				t.attr('class','forecast'+currentWeatherShowing);
 				$('#timeWrap').removeClass('showSelector');
 				return false;
-			});/*.swipe({swipeLeft:function(){
-				swipeWeatherLeft();
-			}, swipeRight:function(){
-				swipeWeatherRight();
-			}});*/
+			});
 			</script>
 			<div id="loader"></div>
             <div id="unlock">
