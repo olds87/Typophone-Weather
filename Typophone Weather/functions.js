@@ -15,13 +15,17 @@ function setHour(hour, AM_PM) {
         document.ampm.src = (am) ? basePath + 'am.png' : basePath + 'pm.png';
     } else
         document.ampm.src = basePath + 'NOTamNORpm.png';
-    document.hr1.src = basePath + hour.substring(0,1) + '.png';
-    document.hr2.src = basePath + hour.substring(1,2) + '.png';
+	$('#hr1').text(hour.substring(0,1));	
+	$('#hr2').text(hour.substring(1,2));
+    //document.hr1.src = basePath + hour.substring(0,1) + '.png';
+    //document.hr2.src = basePath + hour.substring(1,2) + '.png';
 }
 
 function setMinute(minute) {
-    document.mn1.src = basePath + minute.substring(0,1) + '.png';
-    document.mn2.src = basePath + minute.substring(1,2) + '.png';
+	$('#mn1').text(minute.substring(0,1));	
+	$('#mn2').text(minute.substring(1,2));
+    //document.mn1.src = basePath + minute.substring(0,1) + '.png';
+    //document.mn2.src = basePath + minute.substring(1,2) + '.png';
 }
 
 function getMinute() {
@@ -65,14 +69,15 @@ function Year() {
 function date() {
     return new Date();
 }
+/*
 (function($) {
 	$.fn.swipe = function(options) {
 		
 		// Default thresholds & swipe functions
 		var defaults = {
 			threshold: {
-				x: 30,
-				y: 10
+				x: 50,
+				y: 30
 			},
 			swipeLeft: function() { alert('swiped left') },
 			swipeRight: function() { alert('swiped right') }
@@ -146,3 +151,31 @@ function date() {
 		});
 	};
 })(jQuery);
+
+function swipeWeatherLeft(){
+	//alert('swipe left'); 
+	if(currentWeatherShowing<2)
+		currentWeatherShowing++;	
+	var t = $(this);
+	t.attr('class','forecast'+currentWeatherShowing);
+	$('#timeWrap').removeClass('showSelector');
+	
+}
+function swipeWeatherRight(){
+	//alert('swipe right');
+	if(currentWeatherShowing>1)
+		currentWeatherShowing--;	
+	var t = $(this);
+	t.attr('class','forecast'+currentWeatherShowing);
+	$('#timeWrap').removeClass('showSelector');
+}*/
+var currentWeatherShowing = 0;
+function tapWeather(){
+	if(currentWeatherShowing>1)
+		currentWeatherShowing=0;		
+	else	
+		currentWeatherShowing++;	
+	var t = $(this);
+	t.attr('class','forecast'+currentWeatherShowing);
+	$('#timeWrap').removeClass('showSelector');
+}

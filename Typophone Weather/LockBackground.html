@@ -243,6 +243,15 @@ Edited By: dcinzona
 			<script>
 			getWeather();
 			var currentWeatherShowing = 0;
+			function tapWeather(){
+				if(currentWeatherShowing>1)
+					currentWeatherShowing=0;		
+				else	
+					currentWeatherShowing++;	
+				var t = $(this);
+				t.attr('class','forecast'+currentWeatherShowing);
+				$('#timeWrap').removeClass('showSelector');
+			}
 			$('#weather').click(function(){
 				if(currentWeatherShowing>1)
 					currentWeatherShowing=0;		
@@ -252,7 +261,11 @@ Edited By: dcinzona
 				t.attr('class','forecast'+currentWeatherShowing);
 				$('#timeWrap').removeClass('showSelector');
 				return false;
-			});
+			});/*.swipe({swipeLeft:function(){
+				swipeWeatherLeft();
+			}, swipeRight:function(){
+				swipeWeatherRight();
+			}});*/
 			</script>
 			<div id="loader"></div>
             <div id="unlock">
