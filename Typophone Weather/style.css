@@ -20,6 +20,7 @@ body {
     padding: 278px 0 0 0;
     height: 480px;
     width: 320px;
+/*	background-image:url('/private/var/mobile/Library/SpringBoard/LockBackground.jpg');*/
 	background-size: 61%;
     background-repeat: no-repeat; /* can be removed, only for test purpose */
 	background-color:black;
@@ -36,6 +37,7 @@ body {
 	position:absolute;
 	top:0px;
 	left:0px;
+	background-size: 100%;
 }
 @-webkit-keyframes loaderFadeOut {
 	0% {
@@ -97,7 +99,8 @@ body {
 	height:280px;
 	overflow:hidden;
 	width:320px;
-	
+	background-size: 100%;
+	background-repeat:no-repeat;
 }
 #timeWrap.showSelector
 {
@@ -390,5 +393,5 @@ position:relative;
 	-webkit-animation-direction: alternate;
 	-webkit-animation-timing-function: ease-in-out;
 }
-#timeWrap, #background { *background-image:url('/private/var/mobile/Library/SpringBoard/LockBackground.jpg'); }
+#timeWrap, #background { background-image:url('/private/var/mobile/Library/SpringBoard/LockBackground.jpg'); }
 	
