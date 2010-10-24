@@ -20,7 +20,6 @@ body {
     padding: 278px 0 0 0;
     height: 480px;
     width: 320px;
-/*	background-image:url('/private/var/mobile/Library/SpringBoard/LockBackground.jpg');*/
 	background-size: 61%;
     background-repeat: no-repeat; /* can be removed, only for test purpose */
 	background-color:black;
@@ -87,10 +86,10 @@ body {
 }
 #timeWrap
 {
-	top:1px;
+	top:0px;
 	position:absolute;
 	-webkit-transition: -webkit-transform .3s ease-in-out;
-	-webkit-transform: translateY(1px);
+	-webkit-transform: translateY(0px);
 	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
 	background:black url('LockBackground.png');
