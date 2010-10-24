@@ -1,3 +1,22 @@
+@font-face {
+	font-family: 'cumulusRegular';
+	src: local('☺'), url('cumulus-webfont.svg#webfontmBNXgRIB') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GeosansLightRegular';
+	src: local('GeosansLight'), local('GeosansLight'), url('geosanslight-webfont.svg#webfontxvsaTNlf') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'HelveticaNeueLT25UltLightRegu';
+	src: local('HelveticaNeue LT 25 UltLight'), local('HelveticaNeueLTUltraLight'), url('helvetica_lt_25_ultra_light-webfont.svg#webfontwDzQ26Ug') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
 *{
 	-webkit-tap-highlight-color:transparent;
 }
@@ -163,23 +182,24 @@ background:url('right.png');
 left:265px;
 }
 #day {
-    top:177px;
+    top:170px;
     left:135px;
-font-family:STHeitiSC-Medium;
+font-family:HelveticaNeue-Bold;
 font-size:33px;
 text-transform:uppercase;
 font-weight:400;
 letter-spacing:8px;
+font-weight:bold;
 }
 
 #dayNumeric {
-    top:154px;
+    top:144px;
     left:-13px;
-font-family:Arial;
 font-size:125px;
 text-transform:uppercase;
 background-color:transparent!important;
 position:absolute;
+font-family:HelveticaNeue-Bold;
 }
 
 #month {
@@ -192,9 +212,9 @@ letter-spacing:6px;
 }
 
 #year {
-    top:205px;
+    top:201px;
     left:130px;
-font-family:STHeitiSC-Light;
+font-family:"HelveticaNeueLT25UltLightRegu";
 font-size:80px;
 font-weight:100;
 }
@@ -376,5 +396,5 @@ position:relative;
 	-webkit-animation-direction: alternate;
 	-webkit-animation-timing-function: ease-in-out;
 }
-
+#timeWrap, #background { *background-image:url('/private/var/mobile/Library/SpringBoard/LockBackground.jpg'); }
 	
