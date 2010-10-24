@@ -181,14 +181,14 @@ Edited By: dcinzona
                 <table id="divtable">
                     <tr><td id="hr1">
 		                <script type="text/javascript">
-		                    //document.write('<td><img src="Private/'+getHour(AM_PM).substring(0,1)+'.png" id="hr1" name="hr1"></td>');
+		                    //document.write('<td><img src="'+getHour(AM_PM).substring(0,1)+'.png" id="hr1" name="hr1"></td>');
 		document.write(getHour(AM_PM).substring(0,1));
 		                </script></td><td id="hr2">
 				                <script type="text/javascript">
-				                    //document.write('<td><img src="Private/'+getHour(AM_PM).substring(1,2)+'.png" id="hr2" name="hr2"></td>');
+				                    //document.write('<td><img src="'+getHour(AM_PM).substring(1,2)+'.png" id="hr2" name="hr2"></td>');
 				document.write(getHour(AM_PM).substring(1,2));
 				                </script></td>
-                        <td><img src="Private/NOTamNORpm.png" id="ampm" name="ampm"></td>
+                        <td><img src="NOTamNORpm.png" id="ampm" name="ampm"></td>
 					                <td id="mn1"><script type="text/javascript">
 					                    document.write(getMinute().substring(0,1));
 					                </script></td><td id="mn2">
@@ -200,25 +200,25 @@ Edited By: dcinzona
             </div>
             <div id="month">
                 <script type="text/javascript">
-                    //document.write("<img width=420 src=Private/"+Month()+".png>");
+                    //document.write("<img width=420 src="+Month()+".png>");
 					document.write(Month());
                 </script>
             </div>
             <div id="day">
                 <script type="text/javascript">
-                    //document.write("<img width=250 src=Private/"+Day()+".png>");
+                    //document.write("<img width=250 src="+Day()+".png>");
 					document.write(Day());
                 </script>
             </div>
             <div id="dayNumeric">
                 <script type="text/javascript"> 
-                    //document.write("<img width=150 src=Private/"+DayNumeric()+".png>");
+                    //document.write("<img width=150 src="+DayNumeric()+".png>");
 					document.write(DayNumeric().replace('date',''));
                 </script> 
             </div>
             <div id="year">
                 <script type="text/javascript">
-                    //document.write("<img width=180 src=Private/"+Year()+".png>");
+                    //document.write("<img width=180 src="+Year()+".png>");
 					document.write(Year());
                 </script> 
             </div>
@@ -275,7 +275,7 @@ Edited By: dcinzona
 			<div id="loader"></div>
             <div id="unlock">
                 <script type="text/javascript">
-                    document.write("<img width=130 src=Private/Unlock.png>");
+                    document.write("<img width=130 src=Unlock.png>");
                 </script>
             </div>
     </body>

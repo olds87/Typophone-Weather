@@ -1,4 +1,4 @@
-basePath = 'Private/';
+basePath = '';
 AM_PM = true;    // switch between 12 (true) and 24 (false) hour format ! Respring to take effect !
 function isArray(obj) {
 	return (obj.constructor.toString().indexOf("Array") != -1);
