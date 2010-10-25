@@ -3,8 +3,10 @@
 declare -a cydia
 cydia=($CYDIA)
 
+echo "Backing up config";
+
 if [ -f /Library/Themes/Typophone\ Weather.theme/weather.txt ];then 
-	cp -f /Library/Themes/Typophone\ Weather.theme/weather.txt /tmp/weather.txt.tmp
+	cp -f /Library/Themes/Typophone\ Weather.theme/weather.txt /tmp/weather.txt.tmp;
 fi
 
 exit 0
