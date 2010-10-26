@@ -4,7 +4,7 @@ Priority: optional
 Section: Themes
 Maintainer: Gustavo Tandeciarz (dcinzona) <gmt@gmtaz.com>
 Architecture: iphoneos-arm
-Version: 1.9-6
+Version: 1.9-7
 Description: beta typophone theme
 Depends: winterboard
 Author: Gustavo Tandeciarz (dcinzona) <gmt@gmtaz.com>

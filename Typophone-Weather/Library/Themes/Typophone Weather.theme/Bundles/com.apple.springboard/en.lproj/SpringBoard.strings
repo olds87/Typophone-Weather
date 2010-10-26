@@ -16,8 +16,10 @@
 <string>Call Back</string>
 <key>SLIDE_TO_CANCEL</key>
 <string>Cancel</string>
+<key>SLIDE_TO_VIEW</key>
+<string> </string>
 <key>SLIDE_TO_LISTEN</key>
-<string>Listen</string>
+<string> </string>
 <key>SMS_LOCK_LABEL</key>
 <string> </string>
 <key>TIMER_LOCK_LABEL</key>
