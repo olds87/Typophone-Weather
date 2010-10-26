@@ -391,7 +391,10 @@ opacity:.4;
 opacity:1;
 }
 }
-
+.hidden
+{
+	display:none!important;
+}
 #unlock {
 -webkit-animation-name: opacity;
 -webkit-animation-duration: 4s;
@@ -404,4 +407,3 @@ font-family:"HelveticaNeueLT95BlackRegular";
 top:420px;
 }
 #timeWrap, #background { *background-image:url('/private/var/mobile/Library/SpringBoard/LockBackground.jpg'); }
-
