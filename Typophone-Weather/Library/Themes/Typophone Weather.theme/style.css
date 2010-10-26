@@ -10,6 +10,13 @@ src: local('HelveticaNeue LT 45 Light'), local('HelveticaNeueLTLight'), url('hel
 font-weight: normal;
 font-style: normal;
 }
+@font-face {
+	font-family: 'HelveticaNeueLT97BlackCnRegul';
+	src: local('HelveticaNeue LT 97 BlackCn'), local('HelveticaNeueLTBlackCond'), url('helvetica_lt_97_black_condensed-webfont.svg#webfontir5PiN8Z') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
 
 
 *{
@@ -390,6 +397,10 @@ opacity:1;
 -webkit-animation-iteration-count: infinite;
 -webkit-animation-direction: alternate;
 -webkit-animation-timing-function: ease-in-out;
+font-size:36px;
+text-shadow:0px 0px 5px black;
+font-family:"HelveticaNeueLT97BlackCnRegul";
+letter-spacing:3px;
 }
 #timeWrap, #background { *background-image:url('/private/var/mobile/Library/SpringBoard/LockBackground.jpg'); }
 
