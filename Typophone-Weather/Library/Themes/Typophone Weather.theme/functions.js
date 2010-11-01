@@ -54,7 +54,10 @@ function Day() {
 }
 
 function DayNumeric() {
-    return "date" + date().getDate();
+	var s = ""+date().getDate();
+	if(s.length==1)
+		s="0"+s;
+    return "date" + s;
 }
 
 function Month() {
