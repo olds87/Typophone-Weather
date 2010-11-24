@@ -170,5 +170,4 @@ function getWeather(z){
 	{
 		renderWeather(currentZip);
 	}
-	
 }

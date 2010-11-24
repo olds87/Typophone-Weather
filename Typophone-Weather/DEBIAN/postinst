@@ -8,10 +8,14 @@ echo "Restoring config";
 if [ -f /tmp/weather.txt.tmp ];then 
 	cp -f /tmp/weather.txt.tmp /Library/Themes/Typophone\ Weather.theme/weather.txt;
 fi
-
-
 if [ -f /tmp/background.css.tmp ];then
 cp -f /tmp/background.css.tmp /Library/Themes/Typophone\ Weather.theme/background.css;
+fi
+if [ -f /tmp/background.css.tmp ];then
+cp -f /tmp/custom.css.tmp /Library/Themes/Typophone\ Weather.theme/custom.css;
+fi
+if [ -f /tmp/app.css.tmp ];then
+cp -f /tmp/app.css.tmp /Library/Themes/Typophone\ Weather.theme/app.css;
 fi
 
 exit 0
