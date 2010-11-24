@@ -8,5 +8,8 @@ echo "Backing up config";
 if [ -f /Library/Themes/Typophone\ Weather.theme/weather.txt ];then 
 	cp -f /Library/Themes/Typophone\ Weather.theme/weather.txt /tmp/weather.txt.tmp;
 fi
+if [ -f /Library/Themes/Typophone\ Weather.theme/background.css ];then
+	cp -f /Library/Themes/Typophone\ Weather.theme/background.css /tmp/background.css.tmp;
+fi
 
 exit 0

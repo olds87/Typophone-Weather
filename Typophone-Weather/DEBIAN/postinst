@@ -3,10 +3,15 @@
 declare -a cydia
 cydia=($CYDIA)
 
-echo "Restoring config";
 
+echo "Restoring config";
 if [ -f /tmp/weather.txt.tmp ];then 
 	cp -f /tmp/weather.txt.tmp /Library/Themes/Typophone\ Weather.theme/weather.txt;
+fi
+
+
+if [ -f /tmp/background.css.tmp ];then
+cp -f /tmp/background.css.tmp /Library/Themes/Typophone\ Weather.theme/background.css;
 fi
 
 exit 0

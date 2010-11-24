@@ -1,4 +1,1 @@
-{ "units" : "Fahrenheit" , "places" : [ 
-{ "cityName": "Bethesda, MD" , "zip": "USMD0034" }, 
-{ "cityName": "Washington, DC" , "zip": "20036" } 
-] }
+{ "units" : "Fahrenheit" , "places" : [ { "cityName" : "Bethesda, MD" , "zip" : "USMD0034" },{ "cityName" : "Athens, Greece" , "zip" : "GRXX0004" }] , "lang" : "en-us" }
