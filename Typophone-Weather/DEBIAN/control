@@ -4,7 +4,7 @@ Priority: optional
 Section: Themes
 Maintainer: Gustavo Tandeciarz (dcinzona) <gmt@gmtaz.com>
 Architecture: iphoneos-arm
-Version: 2.0.8.1
+Version: 2.0.8.5-1
 Description: Beta Typophone Weather
 Depends: winterboard
 Author: Gustavo Tandeciarz (dcinzona) <gmt@gmtaz.com>

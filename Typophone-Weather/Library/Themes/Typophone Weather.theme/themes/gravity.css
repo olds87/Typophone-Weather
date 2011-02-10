@@ -1,0 +1,481 @@
+@font-face {
+font-family: 'HelveticaNeueLT25UltLightRegu';
+src: local('HelveticaNeue LT 25 UltLight'), local('HelveticaNeueLTUltraLight'), url('helvetica_lt_25_ultra_light-webfont.svg#webfontwDzQ26Ug') format('svg');
+font-weight: normal;
+font-style: normal;
+}
+@font-face {
+font-family: 'HelveticaNeueLT45LightRegular';
+src: local('HelveticaNeue LT 45 Light'), local('HelveticaNeueLTLight'), url('helvetica_lt_45_light-webfont.svg#webfontc7T4Z6tx') format('svg');
+font-weight: normal;
+font-style: normal;
+}
+@font-face {
+	font-family: 'HelveticaNeueLT95BlackRegular';
+	src: local('HelveticaNeue LT 95 Black'), local('HelveticaNeueLTBlack'), url('helvetica_lt_95_black-webfont.svg#webfontTOzeoXFt') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+
+
+*{
+-webkit-tap-highlight-color:transparent;
+}
+body {
+margin: 0;
+padding: 278px 0 0 0;
+height: 480px;
+width: 320px;
+background-color:black;
+color:white;
+text-shadow:0px 0px 5px black;
+font-family:"helvetica";
+overflow:hidden; /*just like my women*/
+}
+@-webkit-keyframes loaderFadeOut {
+0% {
+opacity:.8;
+}
+50% {
+opacity:.4;	
+}
+100% {
+opacity:0;
+}
+}
+#loader
+{
+-webkit-animation-name: loaderFadeOut;
+-webkit-animation-duration: .2s;
+-webkit-animation-iteration-count: 1;
+-webkit-animation-timing-function: linear;
+opacity:.8;
+background:url("ajax-loader.gif") no-repeat scroll center center black;
+display:none;
+height:80px;
+left:120px;
+position:absolute;
+top:300px;
+width:80px;
+-moz-border-radius: 15px;
+border-radius: 15px;
+}
+@-webkit-keyframes loaderFadeIn {
+0% {
+opacity:0;
+}
+50% {
+opacity:.4;	
+}
+100% {
+opacity:.8;
+}
+}
+#loader.visible
+{
+display:block;
+-webkit-animation-name: loaderFadeIn;
+-webkit-animation-duration: .2s;
+-webkit-animation-iteration-count: 1;
+-webkit-animation-timing-function: linear;
+}
+#timeWrap
+{
+top:0px;
+position:absolute;
+-webkit-transition: -webkit-transform .3s ease-in-out;
+-webkit-transform: translateY(0px);
+-webkit-perspective: 1000;
+-webkit-backface-visibility: hidden;
+display:block;
+height:180px;
+overflow:hidden;
+width:320px;
+background-size: 100%;
+background-repeat:no-repeat;
+}
+#timeWrap.showSelector
+{
+-webkit-transition: -webkit-transform .3s ease-in-out;
+-webkit-transform: translateY(-94px);
+-webkit-perspective: 1000;
+-webkit-backface-visibility: hidden;
+border-bottom:solid 1px #303030;
+}
+#locationSelectorBG
+{
+position:absolute;
+height:94px;
+display:block;
+top:86px;
+width:320px;
+background:transparent url('linen.png') no-repeat center;
+}
+#locationSelector
+{
+display:block;
+height:94px;
+padding-top:24px;
+position:absolute;
+top:100px;
+width:1600px;
+-webkit-transform: translateX(0px);
+-webkit-transition: -webkit-transform .3s ease-in-out;
+-webkit-perspective: 1000;
+-webkit-backface-visibility: hidden;
+-moz-box-shadow:inset 0 0 10px #000000;
+}
+#locationSelector span
+{
+text-shadow:0 0 5px black;
+width:220px;
+font-weight:bold;
+text-align:center;
+font-size:14pt!important;
+display:inline-block;
+opacity:.7;
+}
+.location
+{
+text-overflow: ellipsis;
+margin:0px 50px;
+overflow: hidden;
+white-space:nowrap;
+}
+#locationSelector span.active
+{
+text-shadow:0 0 10px black;
+font-size:1.5em;
+opacity:1;
+}
+.locationArrows
+{
+position:absolute;
+width:55px;
+height:94px;
+display:none;
+top:90px;
+}
+#locationLeft
+{
+background:url('left.png');
+left:0px;
+}
+#locationLeft.visible, #locationRight.visible
+{
+display:block;
+}
+#locationRight
+{
+background:url('right.png');
+left:265px;
+}
+#day {
+top:90px;
+left:0px;
+font-family:"HelveticaNeueLT45LightRegular";
+font-size:15pt;
+text-transform:uppercase;
+text-align: right;
+letter-spacing:0px;
+width: 120px;
+}
+
+#dayNumeric {
+top:68px;
+left: 137px;
+font-size:30pt;
+text-transform:uppercase;
+background-color:transparent!important;
+position:absolute;
+font-family:HelveticaNeue;
+opacity: .6;
+}
+
+#month {
+top:90px;
+left:180px;
+text-transform:uppercase;
+font-family:"HelveticaNeueLT45LightRegular";
+font-size:15pt;
+letter-spacing:0px;
+width: 120px;
+text-align: right;
+}
+
+#year {
+top:201px;
+left:130px;
+font-family:"HelveticaNeueLT25UltLightRegu";
+font-size:80px;
+font-weight:100;
+display: none;
+}
+
+#divtable {
+top: 28px;
+left: 0px;
+height: 100px;
+padding: -10px;
+margin: -10px;
+}
+
+#hr1, #hr2, #mn1, #mn2 {
+font-size:30pt;	
+font-family:HelveticaNeue;
+top:0px;
+position:relative;
+}
+#hr1
+{
+	text-indent: 8px;
+}
+#hr2
+{
+	text-indent: -3px;
+}
+#mn1
+{
+	text-indent: -3px;
+}
+#mn2
+{
+	text-indent: -3px;
+}
+#ampm {
+width:10px;
+height:49px;
+display: block;
+content: ":";
+font-size: 30pt;
+font-weight: bold;
+left: -20px;
+text-indent: -5px;
+}
+#ampm:after {
+content: ":";
+font-size: 30pt;
+font-weight: bold;
+}
+
+#unlock {
+top:422px;
+left:175px;
+}
+
+@-webkit-keyframes weatherFadeIn {
+0% {
+opacity:0;
+}
+50% {
+opacity:.5;	
+}
+100% {
+opacity:1;
+}
+}
+#weather .weatherSection
+{
+position:relative;
+float:left;
+width:320px;
+height:70px;
+top: 0px;
+}
+#weather{
+top:180px;
+padding-top: 0px;
+height:400px;
+width:320px;
+position:absolute;
+display:block;
+font-family:HelveticaNeue;
+opacity:1;
+*background: url("LockBackground.jpg") no-repeat scroll 0 -180px transparent;
+}
+#weather.showSelector
+{
+-webkit-transform: translateX(0px);
+border-top:solid 1px #303030;
+top:179px;
+}
+.weatherThumb
+{
+top:10px;
+left: 0px;
+width: 64px;
+}
+#Day1Weather .weatherThumb, #Day2Weather .weatherThumb
+{
+	left: 16px;
+	top: 18px;
+	width: 44px;
+}
+#Day1Weather,#Day2Weather
+{
+	opacity: .8;
+}
+#Day2Weather
+{
+position: absolute;
+	top: -15px!important;
+	height: 60px;
+	opacity: .5;
+}
+ #weatherCity1,
+ #weatherCity2
+ {
+ font-family:"HelveticaNeueLT45LightRegular";
+ 	display: block;
+ 	font-size: 11pt;
+ 	left: 65px;
+ 	font-weight: normal;
+ 	top: 5px;
+ }
+
+.weatherCurrently
+{
+font-family:"HelveticaNeueLT45LightRegular";
+	display: block;
+	font-size: 12pt;
+	left: 66px;
+	top: 57px!important;
+}
+.weatherTemp
+{
+font-family:"HelveticaNeueLT45LightRegular";
+font-size:35pt;
+left:65;
+height: 54px;
+overflow: hidden;
+width:100px;
+top:10px;
+}
+#weatherTemp1,#weatherTemp2
+{
+	left: -95px;
+	top: 30px;
+}
+.weatherTempHighLow{
+font-size:14pt;
+left:70px;
+width:250px;
+top:34px;
+}
+#weather1Low:after, #weather2Low:after
+{
+	content: "  -  ";
+}
+#weather1Low,#weather2Low
+{
+display: block;
+width: auto!important;
+height: auto!important;
+	top: 0px;
+	float: right;
+	font-size: 10pt!important;
+}
+
+#weather1high,#weather2high
+{
+display: block;
+width: auto!important;
+height: auto!important;
+		float: right;
+	margin-left: 4px;
+	font-size: 10pt!important;
+}
+#weatherCurrently1,#weatherCurrently2
+{
+	font-size: 10pt!important;
+	top: 50px!important;
+}
+#weather1High span, #weather2High span,#weather1Low span,#weather2Low span
+{
+	font-weight: normal!important;
+	font-size: 12pt!important;
+	top: 0px;
+}
+.label
+{
+width:80px;
+display:inline-block;
+display: none;
+}
+.bold
+{
+font-size:1em;
+font-weight:bold;
+}
+
+@-webkit-keyframes weatherFadeOut {
+0% {
+opacity:1;
+}
+50% {
+opacity:.5;	
+}
+100% {
+opacity:.0;
+}
+}
+#weather.loading
+{
+-webkit-animation-name: weatherFadeOut;
+-webkit-animation-duration: .5s;
+-webkit-animation-iteration-count: 1;
+-webkit-animation-timing-function: linear;
+}
+#weather.forecast0
+{
+-webkit-transition: -webkit-transform .3s ease-in-out;
+-webkit-transform: translateX(0px);
+-webkit-perspective: 1000;
+-webkit-backface-visibility: hidden;
+}
+#weather.forecast1
+{
+-webkit-transition: -webkit-transform .3s ease-in-out;
+-webkit-transform: translateX(0px);
+-webkit-perspective: 1000;
+-webkit-backface-visibility: hidden;
+}
+#weather.forecast2
+{
+-webkit-transition: -webkit-transform .3s ease-in-out;
+-webkit-transform: translateX(0px);
+-webkit-perspective: 1000;
+-webkit-backface-visibility: hidden;
+}
+.weatherCurrently, .weatherThumb, .weatherCity, .weatherTemp, .weatherTempHighLow{
+position:absolute;
+text-shadow:0px 0px 5px black;
+}
+#day, #month, #year, #divtable, #mainDiv, #unlock { 
+position:absolute;
+}
+#unlock.faded
+{
+opacity:.4;
+}
+#unlock {
+-webkit-animation-name: opacity;
+-webkit-animation-duration: 4s;
+-webkit-animation-iteration-count: infinite;
+-webkit-animation-direction: alternate;
+-webkit-animation-timing-function: ease-in-out;
+font-size:30px;
+text-shadow:0px 0px 5px black;
+font-family:"HelveticaNeueLT25UltLightRegu";
+top:420px;
+text-align:right;
+width:300px;
+display:block;
+left:0px;
+}
+.weatherCity
+{
+display: none;
+}

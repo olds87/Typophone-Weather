@@ -98,7 +98,7 @@ function renderWeather(z)
 			var curr0 = (conditions) ? conditions[weather.code].toLowerCase() : weather.currently;
 			var curr1 = (conditions) ? conditions[weather.today.code].toLowerCase()  : weather.forecast;
 			var curr2 = (conditions) ? conditions[weather.tomorrow.code].toLowerCase()  : weather.tomorrow.forecast;
-			$("#weatherThumb").attr('src', weather.image);
+			$("#weatherThumb").attr('src', weather.image[0]);
 			$("#weatherCity").html(weather.city+region);
 			$("#weatherTemp").html(weather.temp+'&deg; '+weather.units.temp);
 			$("#weatherCurrently").text(curr0);//weather.currently);
@@ -110,7 +110,7 @@ function renderWeather(z)
 			$('#weather1Low').html('<span class="label">Low: </span><span class="bold">'+weather.low +'&deg; </span>'+weather.units.temp);
 			$('#weather2High').html('<span class="label">High: </span><span class="bold">'+weather.tomorrow.high +'&deg; </span>'+weather.units.temp);
 			$('#weather2Low').html('<span class="label">Low: </span><span class="bold">'+weather.tomorrow.low +'&deg; </span>'+weather.units.temp);
-			$("#weatherThumb1").attr('src', weather.image);
+			$("#weatherThumb1").attr('src', weather.image[1]);
 			$("#weatherThumb2").attr('src', weather.tomorrow.image);
 			TO = setTimeout('getWeather()', 600000);
 			setTimeout(function(){loadingAnimation(false);},500);
