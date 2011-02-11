@@ -17,5 +17,8 @@ fi
 if [ -f /tmp/app.css.tmp ];then
 cp -f /tmp/app.css.tmp /Library/Themes/Typophone\ Weather.theme/app.css;
 fi
+if [ -f /tmp/LockBackground.jpg.tmp ];then
+cp -f /tmp/LockBackground.jpg.tmp /Library/Themes/Typophone\ Weather.theme/LockBackground.jpg;
+fi
 
 exit 0
