@@ -118,7 +118,17 @@ Edited By: dcinzona
 						currentWeatherShowing++;	
 					var t = $(this);
 					t.attr('class','forecast'+currentWeatherShowing);
+					var n = weather.themeName.toLowerCase();
 					$('#timeWrap').removeClass('showSelector');
+					if(n=="gravity-mauikek")
+					{
+						$('#weatherCity').removeClass('showSelector');
+					}
+					else
+					{
+						
+					}
+					
 					return false;
 				});
 				</script>

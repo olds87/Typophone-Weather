@@ -36,6 +36,11 @@ function listCities(){
 	$('#timeWrap').click(function(){
 		var t = $(this);
 		showSelector(t);	
+		var n = weather.themeName.toLowerCase();
+		if(n=="gravity-mauikek")
+		{
+			showSelector($('#weatherCity'));
+		}
 	});
 }
 var currentPage = 1;

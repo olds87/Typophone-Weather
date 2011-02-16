@@ -1,1 +1,1 @@
-{ "units" : "Fahrenheit" , "places" : [ { "cityName" : "Bethesda, MD" , "zip" : "USMD0034" },{ "cityName" : "Athens, Greece" , "zip" : "GRXX0004" }] , "lang" : "en-us" }
+{ "units" : "Fahrenheit" , "places" : [ { "cityName" : "Bethesda, MD" , "zip" : "USMD0034" },{ "cityName" : "Athens, Greece" , "zip" : "GRXX0004" }] , "lang" : "en-us", "theme":"","themeName":"default" }
